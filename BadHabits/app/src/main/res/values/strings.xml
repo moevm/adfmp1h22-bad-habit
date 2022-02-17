@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BadHabits</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">Bad Habits app</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello! It is our sample project</string>
+</resources>
