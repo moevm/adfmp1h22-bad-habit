@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BadHabits">
         <activity
+            android:name=".Statistic"
+            android:exported="false" />
+        <activity
+            android:name=".HowDayBefore"
+            android:exported="false" />
+        <activity
+            android:name=".HowDay"
+            android:exported="false" />
+        <activity
             android:name=".Habbit"
             android:exported="false" />
         <activity

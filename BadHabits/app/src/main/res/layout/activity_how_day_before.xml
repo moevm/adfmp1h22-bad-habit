@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HowDayBefore">
+
+    <TextView
+        android:id="@+id/habitName"
+        android:layout_width="187dp"
+        android:layout_height="450dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="112dp"
+        android:text="Едут в поезде х@хол и русский. Решили в дурака поиграть, а карт нет.Решили играть тем, у кого что есть. Х@хол сало достал, ну а русский буханку черного хлеба.Х@хол отрезает шмат, кладет, говорит: Туз.Русский отрезает хлеб, говорит: Шесть козырная, забирает и есть начинает.Ну, х@хол обалдел, думает, как бы русского теперь надурить.
+Отрезает еще больший шмат, кладет, говорит:
+Туз козырный! .
+    Русский репу почесал, подумал, и говорит:
+    Что ж делать, принял... "
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/exitFromHabbit"
+        android:layout_width="43dp"
+        android:layout_height="49dp"
+        android:background="#020202"
+        android:foreground="#00000000"
+        android:onClick="returnToMain"
+        android:shadowColor="#FFFFFF"
+        android:text="X"
+        android:textColorHighlight="#FDFDFD"
+        android:textColorHint="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:iconTint="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rippleColor="#FFFFFF" />
+</androidx.constraintlayout.widget.ConstraintLayout>

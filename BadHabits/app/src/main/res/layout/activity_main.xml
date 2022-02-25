@@ -37,35 +37,40 @@
             <Button
                 android:id="@+id/smoking_button"
                 android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="50dp"
                 android:background="#000000"
-                android:foregroundGravity="center"
+                android:foregroundGravity="top|center"
                 android:foregroundTint="#FFFFFF"
-                android:gravity="center"
+                android:gravity="center|top"
                 android:onClick="goToSmoking"
                 android:text="Курение"
+                android:textAlignment="center"
+                android:textDirection="firstStrongRtl"
                 android:textSize="20sp"
+                app:iconGravity="top"
                 app:iconPadding="10dp" />
 
             <Button
                 android:id="@+id/alco_button"
                 android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center_horizontal"
                 android:foregroundGravity="center"
                 android:gravity="center"
+                android:onClick="goToSmoking"
                 android:text="Алкоголизм"
                 android:textSize="20sp" />
 
             <Button
                 android:id="@+id/champ_button"
                 android:layout_width="200dp"
-                android:layout_height="50dp"
+                android:layout_height="48dp"
                 android:layout_gravity="center_horizontal"
                 android:foregroundGravity="center"
                 android:gravity="center"
+                android:onClick="goToSmoking"
                 android:text="Чавкание"
                 android:textSize="20sp" />
         </LinearLayout>
@@ -89,11 +94,38 @@
         android:gravity="bottom"
         android:orientation="vertical">
 
+        <Button
+            android:id="@+id/howDay"
+            android:layout_width="250dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:foregroundGravity="center"
+            android:onClick="goToHowDay"
+            android:text="Как прошёл ваш день?" />
+
+        <Button
+            android:id="@+id/howDayBefore"
+            android:layout_width="250dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:onClick="goToHowDayBefore"
+            android:text="А предыдущий день?" />
+
+        <Button
+            android:id="@+id/statistic"
+            android:layout_width="250dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:onClick="goToStatistic"
+            android:text="Статистика" />
+
         <TextView
             android:id="@+id/advice"
             android:layout_width="250dp"
             android:layout_height="200dp"
             android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginRight="40dp"
             android:layout_marginBottom="20dp"
             android:background="#00CCB4"
             android:foregroundGravity="center"

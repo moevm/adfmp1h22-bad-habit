@@ -50,4 +50,16 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(Habbit.HABBIT, habit_name)
         startActivity(intent)
     }
+    fun goToStatistic(view: View){
+        val intent = Intent(this, Statistic::class.java)
+        startActivity(intent)
+    }
+    fun goToHowDay(view: View){
+        val intent = Intent(this, HowDay::class.java)
+        startActivity(intent)
+    }
+    fun goToHowDayBefore(view: View){
+        val intent = Intent(this, HowDayBefore::class.java)
+        startActivity(intent)
+    }
 }
