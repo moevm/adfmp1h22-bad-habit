@@ -6,13 +6,75 @@
     android:layout_height="match_parent"
     tools:context=".HowDay">
 
+    <SeekBar
+        android:id="@+id/moodSeek2"
+        android:layout_width="145dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="332dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/yourMood2"
+        android:layout_width="303dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="304dp"
+        android:layout_marginEnd="52dp"
+        android:text="Каково было ваше самочувствие?"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/yourMood"
+        android:layout_width="303dp"
+        android:layout_height="19dp"
+        android:layout_marginTop="252dp"
+        android:layout_marginEnd="52dp"
+        android:text="Каково было ваше настроение?"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/chooseDate"
+        android:layout_width="156dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="200dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Выберите дату"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/yesButton"
+        android:layout_width="50dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="296dp"
+        android:layout_marginTop="92dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Да"
+        android:textSize="8sp"
+        app:iconPadding="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <TextView
         android:id="@+id/habitName"
         android:layout_width="187dp"
-        android:layout_height="70dp"
+        android:layout_height="20dp"
         android:layout_marginTop="100dp"
         android:layout_marginEnd="112dp"
-        android:text="Здесь разработчики ушли смотреть стрим Папича"
+        android:text="Был ли срыв?"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,4 +96,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/noButton"
+        android:layout_width="50dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="92dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Нет"
+        android:textSize="8sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/chooseHabit"
+        android:layout_width="156dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="128dp"
+        android:layout_marginTop="156dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Выберите привычку"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <SeekBar
+        android:id="@+id/moodSeek"
+        android:layout_width="145dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="276dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:layout_marginTop="368dp"
+        android:text="Сохранить"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
