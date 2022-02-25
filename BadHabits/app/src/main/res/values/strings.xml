@@ -17,5 +17,10 @@
 
     <string name="Advice1">Курить - здоровью вредить!</string>
 
-
+    <string name="falures">Срывы</string>
+    <string name="longestPeriod">Самый длинный интервал</string>
+    <string name="shortestPeriod">Самый короткий интервал</string>
+    <string name="days">Дней без</string>
+    <string name="start">Начало отказа</string>
+    <string name="statistics">Статистика</string>
 </resources>
