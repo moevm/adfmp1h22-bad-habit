@@ -7,12 +7,57 @@
     tools:context=".HowDayBefore">
 
 
+    <TextView
+        android:id="@+id/habitName4"
+        android:layout_width="137dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="10dp"
+        android:text="Был ли срыв?"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/yesButton4"
+        app:layout_constraintStart_toEndOf="@+id/noButton4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/yesButton4"
+        android:layout_width="50dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="40dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Да"
+        android:textSize="8sp"
+        app:iconPadding="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/noButton4"
+        android:layout_width="50dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="92dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Нет"
+        android:textSize="8sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
+
     <SeekBar
         android:id="@+id/moodSeek2"
         android:layout_width="145dp"
         android:layout_height="22dp"
         android:layout_marginStart="132dp"
         android:layout_marginTop="332dp"
+        android:layout_marginEnd="134dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,24 +65,28 @@
         android:id="@+id/yourMood2"
         android:layout_width="303dp"
         android:layout_height="19dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="304dp"
         android:layout_marginEnd="52dp"
         android:text="Каково было ваше самочувствие?"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/yourMood"
         android:layout_width="303dp"
         android:layout_height="19dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="252dp"
         android:layout_marginEnd="52dp"
         android:text="Каково было ваше настроение?"
         android:textAlignment="center"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -46,40 +95,15 @@
         android:layout_height="36dp"
         android:layout_marginStart="128dp"
         android:layout_marginTop="200dp"
+        android:layout_marginEnd="127dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="Выберите дату"
         android:textSize="10sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <Button
-        android:id="@+id/yesButton"
-        android:layout_width="50dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="296dp"
-        android:layout_marginTop="92dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="Да"
-        android:textSize="8sp"
-        app:iconPadding="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/habitName"
-        android:layout_width="187dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="112dp"
-        android:text="Был ли срыв?"
-        android:textAlignment="center"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/exitFromHabbit"
@@ -99,29 +123,17 @@
         app:rippleColor="#FFFFFF" />
 
     <Button
-        android:id="@+id/noButton"
-        android:layout_width="50dp"
-        android:layout_height="38dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="92dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="Нет"
-        android:textSize="8sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <Button
         android:id="@+id/chooseHabit"
         android:layout_width="156dp"
         android:layout_height="36dp"
         android:layout_marginStart="128dp"
         android:layout_marginTop="156dp"
+        android:layout_marginEnd="127dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:text="Выберите привычку"
         android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
@@ -132,6 +144,8 @@
         android:layout_height="22dp"
         android:layout_marginStart="132dp"
         android:layout_marginTop="276dp"
+        android:layout_marginEnd="134dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -141,7 +155,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="368dp"
+        android:layout_marginEnd="145dp"
         android:text="Сохранить"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

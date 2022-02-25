@@ -8,14 +8,17 @@
 
     <TextView
         android:id="@+id/habitName"
-        android:layout_width="187dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="112dp"
+        android:layout_width="198dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="107dp"
+        android:gravity="center_horizontal"
         android:text="Some privychka"
         android:textAlignment="center"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -31,7 +34,66 @@
         android:textColorHint="#FFFFFF"
         android:textColorLink="#FFFFFF"
         app:iconTint="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:rippleColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/startCountDown"
+        android:layout_width="198dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="107dp"
+        android:gravity="center_horizontal"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Начать отсчёт"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/habitName" />
+
+    <TextView
+        android:id="@+id/daysCountDown"
+        android:layout_width="198dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="107dp"
+        android:gravity="center_horizontal"
+        android:text="0 дней"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enableNotifications" />
+
+    <TextView
+        android:id="@+id/dateCountDown"
+        android:layout_width="198dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="107dp"
+        android:gravity="center_horizontal"
+        android:text="Начало отказа: 18:54 21.02.2022"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/daysCountDown" />
+
+    <Button
+        android:id="@+id/enableNotifications"
+        android:layout_width="198dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="106dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="107dp"
+        android:gravity="center_horizontal"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Включить оповещания"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/startCountDown" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
