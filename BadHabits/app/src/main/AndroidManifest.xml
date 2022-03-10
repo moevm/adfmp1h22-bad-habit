@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BadHabits">
         <activity
+            android:name=".ChooseDate"
+            android:exported="false" />
+        <activity
             android:name=".Statistic"
             android:exported="false" />
         <activity

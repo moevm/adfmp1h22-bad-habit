@@ -55,6 +55,7 @@
         android:layout_marginEnd="65dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
+        android:onClick="onYesButtonClick"
         android:text="Да"
         android:textSize="8sp"
         app:iconPadding="0dp"
@@ -103,25 +104,10 @@
         android:layout_marginEnd="2dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
+        android:onClick="onNoButtonClick"
         android:text="Нет"
         android:textSize="8sp"
         app:layout_constraintEnd_toStartOf="@+id/habitName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <Button
-        android:id="@+id/chooseHabit"
-        android:layout_width="156dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="156dp"
-        android:layout_marginEnd="127dp"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="Выберите привычку"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
@@ -148,5 +134,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="179dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="112dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
