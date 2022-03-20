@@ -15,9 +15,9 @@ import androidx.annotation.RequiresApi
 import com.example.badhabits.databinding.ActivityMainBinding
 import com.google.android.material.button.MaterialButton
 import java.time.LocalDate
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
@@ -25,8 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
-
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -54,6 +52,7 @@ class MainActivity : AppCompatActivity() {
         val habit_name = (view as MaterialButton).text.toString()
         intent.putExtra(Habit.HABIT, habit_name)
         intent.putExtra(Habit.DATE, "2022-01-02")
+        intent.putExtra(Habit.ShowNotifications, false)
         startActivity(intent)
     }
     fun goToStatistic(view: View){

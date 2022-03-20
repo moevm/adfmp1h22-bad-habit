@@ -1,4 +1,5 @@
 package com.example.badhabits
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -6,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.ConstraintSet.PARENT_ID
 import androidx.core.view.marginStart
 import com.example.badhabits.databinding.FragmentStatisticBinding
+import java.time.format.DateTimeFormatter
 
 class StatisticFragment : Fragment {
     private var _source: StatisticElement? = null
@@ -22,6 +25,7 @@ class StatisticFragment : Fragment {
         _source = source
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +33,8 @@ class StatisticFragment : Fragment {
         var habit = _source!!.habit.toString()
         _binding = FragmentStatisticBinding.inflate(inflater, container, false)
 
-        _binding!!.statisticsStart.text = _source!!.start.toString()
+        _binding!!.statisticsStart.text = _source!!.start.format(
+            DateTimeFormatter.ofPattern("dd.MM.yyyy")).toString()
         _binding!!.statisticsLongest.text = _source!!.longestPeriod.toString()
         _binding!!.statisticsShortest.text = _source!!.shortestPeriod.toString()
         _binding!!.statisticsDays.text = _source!!.daysWithout.toString()
@@ -43,7 +48,8 @@ class StatisticFragment : Fragment {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
-            textView.text = failure.toString()
+            textView.text = failure.format(
+                DateTimeFormatter.ofPattern("dd.MM.yyyy")).toString()
             constraintLayout.addView(textView)
 
             val constraintSet = ConstraintSet()
