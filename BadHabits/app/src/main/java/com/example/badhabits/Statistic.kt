@@ -53,15 +53,15 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initSources() {
-        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy")
         val datesSmoke = ArrayList<LocalDate>()
         val datesAlcohol = ArrayList<LocalDate>()
-        datesSmoke.add(LocalDate.parse("31-12-2019", formatter))
-        datesSmoke.add(LocalDate.parse("11-11-2021", formatter))
-        datesAlcohol.add(LocalDate.parse("07-02-2022", formatter))
-        sources.add(StatisticElement("Курение", LocalDate.parse("31-12-2018", formatter), datesSmoke))
-        sources.add(StatisticElement("Алкоголизм", LocalDate.parse("03-01-2022", formatter), datesAlcohol))
-        sources.add(StatisticElement("Чавкание", LocalDate.parse("13-10-2021", formatter), ArrayList<LocalDate>()))
+        datesSmoke.add(LocalDate.parse("31.12.2019", formatter))
+        datesSmoke.add(LocalDate.parse("11.11.2021", formatter))
+        datesAlcohol.add(LocalDate.parse("07.02.2022", formatter))
+        sources.add(StatisticElement("Курение", LocalDate.parse("31.12.2018", formatter), datesSmoke))
+        sources.add(StatisticElement("Алкоголизм", LocalDate.parse("03.01.2022", formatter), datesAlcohol))
+        sources.add(StatisticElement("Чавкание", LocalDate.parse("13.10.2021", formatter), ArrayList<LocalDate>()))
     }
     fun returnToMain(view: View){
         val intent = Intent(this, MainActivity::class.java)
