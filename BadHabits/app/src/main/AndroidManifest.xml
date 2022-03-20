@@ -13,6 +13,9 @@
             android:name=".ChooseDate"
             android:exported="false" />
         <activity
+            android:name=".ChooseHabitDate"
+            android:exported="false" />
+        <activity
             android:name=".Statistic"
             android:exported="false" />
         <activity
@@ -22,7 +25,7 @@
             android:name=".HowDay"
             android:exported="false" />
         <activity
-            android:name=".Habbit"
+            android:name=".Habit"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -35,6 +38,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver
+            android:name=".AlarmReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="Habit.Name" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".NotificationService"
+            android:enabled="true" />
     </application>
 
 </manifest>
