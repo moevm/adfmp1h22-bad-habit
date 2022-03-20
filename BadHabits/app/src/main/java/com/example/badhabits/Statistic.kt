@@ -19,8 +19,8 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
         var habitId = 0
 
         if (savedInstanceState == null) {
-            val constraintLayout = findViewById<ConstraintLayout>(R.id.statistic_view)
-            var lastFragmentId = PARENT_ID
+            val constraintLayout = findViewById<ConstraintLayout>(R.id.statistic_scroll_layout)
+            var lastFragmentId = R.id.statistic_scroll
 
             for (element in sources) {
 
@@ -33,9 +33,9 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
                 }
                 val constraintSet = ConstraintSet()
                 constraintSet.clone(constraintLayout)
-                var margin = 100
+                var margin = 0
                 if(lastFragmentId != PARENT_ID) {
-                    margin = 500
+                    margin = 250
                 }
                 constraintSet.connect(
                     fragment.id,
