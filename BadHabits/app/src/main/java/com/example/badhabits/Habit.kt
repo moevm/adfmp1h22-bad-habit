@@ -71,9 +71,10 @@ class Habit : AppCompatActivity() {
         val date = LocalDate.parse(intent.getStringExtra(Habit.DATE))
         val period = Period.between(date, LocalDate.now())
         val days = period.years * 365 + period.months * 30 + period.days
+        val dateInFormat = date.format(
+            DateTimeFormatter.ofPattern("dd.MM.yyyy"))
         findViewById<TextView>(R.id.daysCountDown).text = "Дней без привычки: $days"
-        findViewById<TextView>(R.id.dateCountDown).text = "Начало отказа: ${date.format(
-            DateTimeFormatter.ofPattern("dd.MM.yyyy"))}"
+        findViewById<TextView>(R.id.dateCountDown).text = "Начало отказа: $dateInFormat"
     }
     private fun setButtonText(showNotifications: Boolean) {
         if(!showNotifications) {
