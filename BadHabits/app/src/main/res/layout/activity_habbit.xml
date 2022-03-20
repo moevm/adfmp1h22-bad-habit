@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Habbit">
+    tools:context=".Habit">
 
     <TextView
         android:id="@+id/habitName"
@@ -46,6 +46,7 @@
         android:gravity="center_horizontal"
         android:insetTop="0dp"
         android:insetBottom="0dp"
+        android:onClick="getDate"
         android:text="Выберите дату начала отсчёта"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"

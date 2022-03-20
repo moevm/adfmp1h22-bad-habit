@@ -1,18 +1,20 @@
 package com.example.badhabits
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import androidx.annotation.RequiresApi
 import com.example.badhabits.databinding.ActivityMainBinding
+import com.google.android.material.button.MaterialButton
+import java.time.LocalDate
 
 class MainActivity : AppCompatActivity() {
 
@@ -47,10 +49,11 @@ class MainActivity : AppCompatActivity() {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
-    fun goToSmoking(view: View) {
-        val intent = Intent(this, Habbit::class.java)
-        val habit_name = findViewById<Button>(R.id.smoking_button).text.toString()
-        intent.putExtra(Habbit.HABBIT, habit_name)
+    fun goToHabit(view: View) {
+        val intent = Intent(this, Habit::class.java)
+        val habit_name = (view as MaterialButton).text.toString()
+        intent.putExtra(Habit.HABIT, habit_name)
+        intent.putExtra(Habit.DATE, "2022-01-02")
         startActivity(intent)
     }
     fun goToStatistic(view: View){

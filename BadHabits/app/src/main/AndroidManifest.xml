@@ -13,6 +13,9 @@
             android:name=".ChooseDate"
             android:exported="false" />
         <activity
+            android:name=".ChooseHabitDate"
+            android:exported="false" />
+        <activity
             android:name=".Statistic"
             android:exported="false" />
         <activity
@@ -22,7 +25,7 @@
             android:name=".HowDay"
             android:exported="false" />
         <activity
-            android:name=".Habbit"
+            android:name=".Habit"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
