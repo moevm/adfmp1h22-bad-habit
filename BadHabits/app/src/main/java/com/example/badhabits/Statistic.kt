@@ -1,18 +1,23 @@
 package com.example.badhabits
 
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.ConstraintSet.*
 import androidx.fragment.app.*
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.collections.ArrayList
 
 class Statistic : AppCompatActivity(R.layout.activity_statistic) {
     private val sources = ArrayList<StatisticElement>()
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.initSources()
@@ -46,15 +51,17 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
 
         }
     }
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun initSources() {
-        var dates = ArrayList<Date>()
-        dates.add(Date())
-        dates.add(Date(122, 10, 12, 18, 12, 31))
-        dates.add(Date(122, 3, 12, 18, 12, 31))
-        dates.add(Date(122, 4, 12, 18, 12, 31))
-        sources.add(StatisticElement("Курение", Date(), 2, 1 ,3, dates))
-        sources.add(StatisticElement("Алкоголизм", Date(), 1, 2 ,3, dates))
-        sources.add(StatisticElement("Чавкание", Date(), 22, 1 ,22, dates))
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val datesSmoke = ArrayList<LocalDate>()
+        val datesAlcohol = ArrayList<LocalDate>()
+        datesSmoke.add(LocalDate.parse("31-12-2019", formatter))
+        datesSmoke.add(LocalDate.parse("11-11-2021", formatter))
+        datesAlcohol.add(LocalDate.parse("07-02-2022", formatter))
+        sources.add(StatisticElement("Курение", LocalDate.parse("31-12-2018", formatter), datesSmoke))
+        sources.add(StatisticElement("Алкоголизм", LocalDate.parse("03-01-2022", formatter), datesAlcohol))
+        sources.add(StatisticElement("Чавкание", LocalDate.parse("13-10-2021", formatter), ArrayList<LocalDate>()))
     }
     fun returnToMain(view: View){
         val intent = Intent(this, MainActivity::class.java)

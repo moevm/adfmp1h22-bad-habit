@@ -29,7 +29,7 @@ class StatisticFragment : Fragment {
         var habit = _source!!.habit.toString()
         _binding = FragmentStatisticBinding.inflate(inflater, container, false)
 
-        _binding!!.statisticsStart.text = _source!!.start.toLocaleString()
+        _binding!!.statisticsStart.text = _source!!.start.toString()
         _binding!!.statisticsLongest.text = _source!!.longestPeriod.toString()
         _binding!!.statisticsShortest.text = _source!!.shortestPeriod.toString()
         _binding!!.statisticsDays.text = _source!!.daysWithout.toString()
@@ -43,7 +43,7 @@ class StatisticFragment : Fragment {
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
-            textView.text = failure.toLocaleString()
+            textView.text = failure.toString()
             constraintLayout.addView(textView)
 
             val constraintSet = ConstraintSet()
