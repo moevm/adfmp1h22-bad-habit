@@ -33,16 +33,11 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
                 }
                 val constraintSet = ConstraintSet()
                 constraintSet.clone(constraintLayout)
-                var margin = 0
-                if(lastFragmentId != PARENT_ID) {
-                    margin = 250
-                }
                 constraintSet.connect(
                     fragment.id,
                     TOP, // put text view top side bottom of button
                     lastFragmentId, // button to put text view bellow it
-                    TOP, // button bottom to put text view bellow it,
-                    margin
+                    BOTTOM
                 )
                 constraintSet.applyTo(constraintLayout)
                 lastFragmentId = fragment.id
@@ -54,6 +49,9 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
     private fun initSources() {
         var dates = ArrayList<Date>()
         dates.add(Date())
+        dates.add(Date(122, 10, 12, 18, 12, 31))
+        dates.add(Date(122, 3, 12, 18, 12, 31))
+        dates.add(Date(122, 4, 12, 18, 12, 31))
         sources.add(StatisticElement("Курение", Date(), 2, 1 ,3, dates))
         sources.add(StatisticElement("Алкоголизм", Date(), 1, 2 ,3, dates))
         sources.add(StatisticElement("Чавкание", Date(), 22, 1 ,22, dates))
