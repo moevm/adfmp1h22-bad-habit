@@ -53,23 +53,6 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <Button
-        android:id="@+id/exitFromHabbit"
-        android:layout_width="43dp"
-        android:layout_height="49dp"
-        android:background="#020202"
-        android:foreground="#00000000"
-        android:onClick="returnToMain"
-        android:shadowColor="#FFFFFF"
-        android:text="X"
-        android:textColorHighlight="#FDFDFD"
-        android:textColorHint="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        app:iconTint="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:rippleColor="#FFFFFF" />
-
-    <Button
         android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

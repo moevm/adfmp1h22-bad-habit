@@ -42,6 +42,7 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Set Adapter to Spinner
         spinner!!.adapter = aa
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
     fun returnToMain(view: View){

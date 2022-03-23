@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Отказ от вредных привычек</string>
+    <string name="app_name">Вредные привычки</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">Отказ от вредных привычек</string>

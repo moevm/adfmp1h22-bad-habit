@@ -21,6 +21,7 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         this.initSources()
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         var habitId = 0
 
         if (savedInstanceState == null) {
