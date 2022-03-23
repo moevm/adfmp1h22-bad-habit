@@ -6,7 +6,6 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.PackageManagerCompat.LOG_TAG
 import org.json.JSONObject
 import java.io.*
 import java.text.SimpleDateFormat
@@ -19,7 +18,7 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
     var disruptionWas: Boolean = false
     var habbit:String = ""
-    var currentDate: String = SimpleDateFormat("dd.mm.yyyy", Locale.getDefault()).format(Date())
+    var currentDate: String = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date())
     var moodToday: String = ""
     var feelToday: String = ""
 
