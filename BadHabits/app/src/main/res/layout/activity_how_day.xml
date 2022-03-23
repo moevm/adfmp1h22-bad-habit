@@ -7,7 +7,7 @@
     tools:context=".HowDay">
 
     <SeekBar
-        android:id="@+id/moodSeek2"
+        android:id="@+id/feelSeek"
         android:layout_width="145dp"
         android:layout_height="22dp"
         android:layout_marginStart="132dp"
@@ -48,34 +48,31 @@
 
     <Button
         android:id="@+id/yesButton"
+        android:backgroundTint="@android:color/holo_red_dark"
         android:layout_width="50dp"
         android:layout_height="38dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="65dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="16dp"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:onClick="onYesButtonClick"
         android:text="Да"
         android:textSize="8sp"
         app:iconPadding="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/habitName"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/noButton"
+        app:layout_constraintTop_toBottomOf="@+id/habitName"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/habitName"
         android:layout_width="137dp"
         android:layout_height="20dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="112dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="88dp"
         android:text="Был ли срыв?"
         android:textAlignment="center"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/noButton"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -99,17 +96,16 @@
         android:id="@+id/noButton"
         android:layout_width="50dp"
         android:layout_height="38dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginStart="91dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@android:color/holo_green_dark"
         android:insetTop="0dp"
         android:insetBottom="0dp"
         android:onClick="onNoButtonClick"
         android:text="Нет"
         android:textSize="8sp"
-        app:layout_constraintEnd_toStartOf="@+id/habitName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/habitName"
         tools:ignore="TouchTargetSizeCheck" />
 
     <SeekBar
@@ -124,13 +120,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
         android:layout_marginTop="368dp"
         android:layout_marginEnd="145dp"
         android:text="Сохранить"
+        android:onClick="onSaveButtonClick"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -139,9 +136,9 @@
         android:id="@+id/spinner"
         android:layout_width="179dp"
         android:layout_height="41dp"
+        android:layout_marginStart="120dp"
         android:layout_marginTop="164dp"
-        android:layout_marginEnd="112dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 

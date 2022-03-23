@@ -70,7 +70,7 @@
         app:rippleColor="#FFFFFF" />
 
     <Button
-        android:id="@+id/button5"
+        android:id="@+id/saveButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="140dp"
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <SeekBar
-        android:id="@+id/moodSeek2"
+        android:id="@+id/feelSeek"
         android:layout_width="145dp"
         android:layout_height="22dp"
         android:layout_marginStart="132dp"

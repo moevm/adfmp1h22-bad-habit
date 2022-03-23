@@ -1,17 +1,30 @@
 package com.example.badhabits
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.PackageManagerCompat.LOG_TAG
+import org.json.JSONObject
+import java.io.*
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
     var list_of_items = arrayOf("Курение", "Алкоголизм", "Наркомания")
+
+    var disruptionWas: Boolean = false
+    var habbit:String = ""
+    var currentDate: String = SimpleDateFormat("dd.mm.yyyy", Locale.getDefault()).format(Date())
+    var moodToday: String = ""
+    var feelToday: String = ""
+
+    var filename = "userHabbits"
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,11 +54,67 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
     fun onNoButtonClick(view: View){
         // логика сохранения ответа
+        disruptionWas = false
 
     }
     fun onYesButtonClick(view: View){
         // логика сохранения ответа
+        disruptionWas = true
+    }
+    fun onSaveButtonClick(view: View){
+        // логика сохранения ответа
+        var seekBarM:SeekBar = findViewById(R.id.moodSeek);
+        var seekBarF:SeekBar = findViewById(R.id.feelSeek);
+        var spinnerH:Spinner = findViewById(R.id.spinner);
+        moodToday = seekBarM.getProgress().toString()
+        feelToday = seekBarF.getProgress().toString()
+        habbit = spinnerH.selectedItem.toString()
 
+        val rootObject= JSONObject()
+        rootObject.put("habbit", habbit)
+        rootObject.put("distruption", disruptionWas)
+        rootObject.put("Date",currentDate)
+        rootObject.put("Mood",moodToday)
+        rootObject.put("feel",feelToday)
+
+
+        var tmpUserData:String = rootObject.toString()
+        try {
+            // отрываем поток для записи
+            val bw = BufferedWriter(
+                OutputStreamWriter(openFileOutput(filename, MODE_APPEND))
+            )
+            // пишем данные
+            bw.write(tmpUserData)
+            // закрываем поток
+            bw.close()
+            Log.d("fileIn", "Файл записан")
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+        Toast.makeText(this@HowDay, "Сохранено", Toast.LENGTH_SHORT).show()
+        try {
+            // открываем поток для чтения
+            val br = BufferedReader(
+                InputStreamReader(openFileInput(filename))
+            )
+            var str: String? = ""
+            // читаем содержимое
+            while (br.readLine().also { str = it } != null) {
+                Log.d("fileOut", str!!)
+            }
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+
+
+
+        Log.d("Mood", rootObject.toString())
     }
 
 }
