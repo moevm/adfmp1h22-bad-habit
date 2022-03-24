@@ -34,6 +34,9 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
 
     var list_of_items = arrayOf("Курение", "Алкоголизм", "Чавкание")
 
+    val APP_PREFERENCES_HABITS:String = "userHabits"
+    lateinit var mSettingsHabits: SharedPreferences
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,6 +83,11 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
         val datesSmoke = ArrayList<LocalDate>()
         val datesAlcohol = ArrayList<LocalDate>()
 
+        mSettingsHabits = getSharedPreferences(APP_PREFERENCES_HABITS, Context.MODE_PRIVATE)
+        var habits = HashSet<String>()
+        if(mSettingsHabits?.contains("habits") == true) habits =
+            (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
+
         var userDateFromFile:JSONArray = JSONArray()
 
         try {
@@ -103,7 +111,7 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
 
         Log.d("fileOut", userDateFromFile.toString())
 
-        for(habbitName in list_of_items)
+        for(habbitName in habits)
         {
             var currentDate: String = "31.12.2019"
             mSettingsDates?.all

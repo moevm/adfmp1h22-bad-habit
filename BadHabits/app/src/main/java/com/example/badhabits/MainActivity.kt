@@ -1,35 +1,34 @@
 package com.example.badhabits
 
+import android.app.ActionBar
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.util.ArraySet
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
+import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.collections.HashSet
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var appBarConfiguration: AppBarConfiguration
 
     val context: Context = this
@@ -69,8 +68,34 @@ class MainActivity : AppCompatActivity() {
             e.putStringSet("habits", habits)
             e.apply() // не забудьте подтвердить изменения
         }
-        Log.d("AllMain", mSettingsHabits.all.toString())
-        //final_text = (TextView) findViewById(R.id.final_text);
+        //Log.d("AllMain", mSettingsHabits.all.toString())
+
+        var habits = HashSet<String>()
+        if(mSettingsHabits?.contains("habits") == true) habits =
+            (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
+
+        var habitsTmp = Array<String>(habits.size, init= {i:Int -> String.toString()})
+
+        val ll:LinearLayout = findViewById<LinearLayout>(R.id.ll1)
+        var cp:LinearLayout.LayoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT)
+        cp.gravity = Gravity.CENTER_HORIZONTAL
+        cp.width = 250
+        cp.height = 60
+        cp.topMargin = 10
+
+        for(i in habits)
+        {
+            val myButton = com.google.android.material.button.MaterialButton(this)
+            myButton.setText(i)
+            myButton.setBackgroundColor(Color.parseColor("#6200EE"))
+            myButton.setTextColor(Color.parseColor("#FFFFFF"))
+            myButton.setOnClickListener(this)
+            ll.addView(myButton, cp)
+        }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -101,13 +126,13 @@ class MainActivity : AppCompatActivity() {
 
         //Log.d("Name", habit_name)
 
-        var currentDate: String = SimpleDateFormat("yyyy.dd.MM", Locale.getDefault()).format(Date())
+        var currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
         if(mSettingsDates?.contains(habit_name) == true) {
             currentDate =
                 mSettingsDates!!.getString(habit_name,
                         "2022.10.02")!!
         }
-        //Log.d("Date", currentDate)
+        Log.d("Date", currentDate)
         //intent.putExtra(Habit.DATE, "2022-10-02")
         intent.putExtra(Habit.DATE, currentDate)
 
@@ -175,6 +200,12 @@ class MainActivity : AppCompatActivity() {
 
         var alertDialog: AlertDialog = mDialogBuilder.create()
         alertDialog.show()
+    }
+
+    override fun onClick(p0: View?) {
+        if (p0 != null) {
+            goToHabit(p0)
+        }
     }
 }
 

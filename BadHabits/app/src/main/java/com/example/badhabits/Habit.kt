@@ -45,12 +45,12 @@ class Habit : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         showHabitName()
 
-        val hasVisited: Boolean = mSettingsDates.getBoolean("hasVisited", false)
+        val hasVisited: Boolean = mSettingsDates.getBoolean("hasVisited" + habit, false)
         if (!hasVisited) {
             // выводим нужную активность
             val e: SharedPreferences.Editor = mSettingsDates.edit()
-            e.putBoolean("hasVisited", true)
-            e.putString("habits", SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date()))
+            e.putBoolean("hasVisited" + habit, true)
+            e.putString("habits"+ habit, SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date()))
             e.commit() // не забудьте подтвердить изменения
         }
 
@@ -94,7 +94,9 @@ class Habit : AppCompatActivity() {
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun showDate(){
-        val date = LocalDate.parse(intent.getStringExtra(Habit.DATE))
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+
+        val date = LocalDate.parse(intent.getStringExtra(Habit.DATE), formatter)
         val period = Period.between(date, LocalDate.now())
         val days = period.years * 365 + period.months * 30 + period.days
         val dateInFormat = date.format(
