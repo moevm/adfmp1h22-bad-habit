@@ -1,17 +1,14 @@
 package com.example.badhabits
 
-import android.annotation.SuppressLint
-import android.app.NotificationManager
-import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
-import androidx.core.app.NotificationCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import java.time.LocalDate
 import java.time.Period
@@ -19,10 +16,17 @@ import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
 
+
 class Habit : AppCompatActivity() {
     lateinit var habit: String
     lateinit var timer: Timer
     var showNotifications = false
+
+    val APP_PREFERENCES:String = "userSettings"
+    val APP_PREFERENCES_DATES:String = "userDates"
+
+    var mSettings: SharedPreferences? = null
+    var mSettingsDates: SharedPreferences? = null
 
     companion object{
         const val HABIT = "habit"
@@ -33,6 +37,8 @@ class Habit : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_habbit)
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
+        mSettingsDates = getSharedPreferences(APP_PREFERENCES_DATES, Context.MODE_PRIVATE);
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         showHabitName()
         showDate()
@@ -60,8 +66,14 @@ class Habit : AppCompatActivity() {
         if(!showNotifications) {
             timer = startTimer(view)
             showNotifications = true
+            val editor: SharedPreferences.Editor = mSettings!!.edit()
+            editor.putBoolean(habit, showNotifications)
+            editor.apply()
         } else {
             showNotifications = false
+            val editor: SharedPreferences.Editor = mSettings!!.edit()
+            editor.putBoolean(habit, showNotifications)
+            editor.apply()
             timer.cancel()
         }
         setButtonText(showNotifications)
@@ -74,6 +86,11 @@ class Habit : AppCompatActivity() {
         val days = period.years * 365 + period.months * 30 + period.days
         val dateInFormat = date.format(
             DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+
+        val editor: SharedPreferences.Editor = mSettingsDates!!.edit()
+        editor.putString(habit, date.toString())
+        editor.apply()
+
         findViewById<TextView>(R.id.daysCountDown).text = "Дней без привычки: $days"
         findViewById<TextView>(R.id.dateCountDown).text = "Начало отказа: $dateInFormat"
     }

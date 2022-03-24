@@ -78,7 +78,7 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
         rootObject.put("feel",feelToday)
 
 
-        var tmpUserData:String = rootObject.toString()
+        var tmpUserData:String = rootObject.toString() + "\n"
         try {
             // отрываем поток для записи
             val bw = BufferedWriter(
