@@ -73,11 +73,13 @@ class MainActivity : AppCompatActivity() {
         val habit_name = (view as MaterialButton).text.toString()
         intent.putExtra(Habit.HABIT, habit_name)
 
-        var currentDate: String = SimpleDateFormat("yyyy-dd-MM", Locale.getDefault()).format(Date())
+        //Log.d("Name", habit_name)
+
+        var currentDate: String = SimpleDateFormat("yyyy.dd.MM", Locale.getDefault()).format(Date())
         if(mSettingsDates?.contains(habit_name) == true) {
             currentDate =
                 mSettingsDates!!.getString(habit_name,
-                        "2022-10-02")!!
+                        "2022.10.02")!!
         }
         //Log.d("Date", currentDate)
         //intent.putExtra(Habit.DATE, "2022-10-02")

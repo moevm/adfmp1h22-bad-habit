@@ -42,7 +42,7 @@ class Habit : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         showHabitName()
         showDate()
-        showNotifications = intent.getBooleanExtra(ShowNotifications, false)
+        showNotifications = intent.getBooleanExtra(Habit.ShowNotifications, false)
         if(showNotifications) {
             timer = startTimer(findViewById(R.id.enableNotifications))
         }

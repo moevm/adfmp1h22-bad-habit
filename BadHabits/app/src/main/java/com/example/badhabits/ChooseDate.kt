@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.CalendarView
 import androidx.annotation.RequiresApi
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 open class ChooseDateBase: AppCompatActivity() {
     lateinit var calendarView : CalendarView
@@ -21,12 +22,13 @@ open class ChooseDateBase: AppCompatActivity() {
 }
 
 class ChooseDate : ChooseDateBase() {
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val intent = Intent(this, HowDayBefore::class.java)
         var date = ""
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            date = "$dayOfMonth.${month + 1}.$year"
+            date = LocalDate.of(year, month + 1, dayOfMonth).toString()
             intent.putExtra(HowDayBefore.DATE, date)
             startActivity(intent)
         }

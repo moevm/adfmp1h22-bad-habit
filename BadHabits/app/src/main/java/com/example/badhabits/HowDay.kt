@@ -14,7 +14,7 @@ import java.util.*
 
 class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
-    var list_of_items = arrayOf("Курение", "Алкоголизм", "Наркомания")
+    var list_of_items = arrayOf("Курение", "Алкоголизм", "Чавкание")
 
     var disruptionWas: Boolean = false
     var habbit:String = ""
@@ -96,21 +96,7 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
         }
 
         Toast.makeText(this@HowDay, "Сохранено", Toast.LENGTH_SHORT).show()
-        try {
-            // открываем поток для чтения
-            val br = BufferedReader(
-                InputStreamReader(openFileInput(filename))
-            )
-            var str: String? = ""
-            // читаем содержимое
-            while (br.readLine().also { str = it } != null) {
-                Log.d("fileOut", str!!)
-            }
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+
 
 
 
