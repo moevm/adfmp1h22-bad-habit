@@ -5,7 +5,9 @@ import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
+import android.util.ArraySet
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.Menu
@@ -13,6 +15,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -20,7 +23,10 @@ import androidx.navigation.ui.navigateUp
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashSet
 
 
 class MainActivity : AppCompatActivity() {
@@ -32,18 +38,38 @@ class MainActivity : AppCompatActivity() {
 
     val APP_PREFERENCES:String = "userSettings"
     val APP_PREFERENCES_DATES:String = "userDates"
+    val APP_PREFERENCES_HABITS:String = "userHabits"
 
-    var mSettings: SharedPreferences? = null
-    var mSettingsDates: SharedPreferences? = null
+    lateinit var mSettings: SharedPreferences
+    lateinit var mSettingsDates: SharedPreferences
+    lateinit var mSettingsHabits: SharedPreferences
 
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        button = findViewById(R.id.prompt_button);
+        button = findViewById(R.id.prompt_button)
 
-        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
-        mSettingsDates = getSharedPreferences(APP_PREFERENCES_DATES, Context.MODE_PRIVATE);
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
+        mSettingsDates = getSharedPreferences(APP_PREFERENCES_DATES, Context.MODE_PRIVATE)
+        mSettingsHabits = getSharedPreferences(APP_PREFERENCES_HABITS, Context.MODE_PRIVATE)
+        Log.d("AllMain", mSettingsHabits.all.toString())
+        val hasVisited: Boolean = mSettingsHabits.getBoolean("hasVisited", false)
+        if (!hasVisited) {
+            // выводим нужную активность
+            Log.d("cond",hasVisited.toString())
+            val habits = ArraySet<String>()
+            habits.add("Курение")
+            habits.add("Алкоголизм")
+            habits.add("Чавкание")
+            val e: SharedPreferences.Editor = mSettingsHabits.edit()
+            e.putBoolean("hasVisited", true)
+            e.putStringSet("habits", habits)
+            e.apply() // не забудьте подтвердить изменения
+        }
+        Log.d("AllMain", mSettingsHabits.all.toString())
         //final_text = (TextView) findViewById(R.id.final_text);
     }
 
@@ -105,6 +131,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, HowDayBefore::class.java)
         startActivity(intent)
     }
+    @RequiresApi(Build.VERSION_CODES.M)
     fun newHabbitDialog(view: View)
     {
         val li = LayoutInflater.from(context)
@@ -114,22 +141,37 @@ class MainActivity : AppCompatActivity() {
         mDialogBuilder.setView(promptsView)
 
         val userInput:EditText = promptsView.findViewById(R.id.input_text)
-
         mDialogBuilder.setCancelable(false)
-        mDialogBuilder.setPositiveButton("Ok", DialogInterface.OnClickListener()
-        { dialogInterface: DialogInterface, i: Int ->
-            fun onClick(dialog: DialogInterface,id: Int)
+        mDialogBuilder.setPositiveButton("Сохранить", DialogInterface.OnClickListener { dialog, which ->
+            // Here you get get input text from the Edittext
+            //Log.d("Habbit",userInput.getText().toString())
+            var habits = HashSet<String>()
+            var habitsTmp = HashSet<String>()
+            if(mSettingsHabits?.contains("habits") == true) habits =
+                (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
+
+            var flagContain:Boolean = false
+
+            for(i in habits)
             {
-                Log.d("Habbit",userInput.getText().toString())
+                if(i == userInput.getText().toString())
+                {
+                    flagContain = true
+                }
             }
-        })
-        mDialogBuilder.setNegativeButton("Отмена", DialogInterface.OnClickListener()
-        { dialogInterface: DialogInterface, i: Int ->
-            fun onClick(dialog: DialogInterface,id: Int)
+            habitsTmp = habits
+            if(!flagContain)
             {
-                dialog.cancel()
+                habitsTmp.add(userInput.getText().toString())
             }
+            //Log.d("Habbit",habits.toString())
+            val e: SharedPreferences.Editor = mSettingsHabits.edit()
+            e.clear()
+            e.putBoolean("hasVisited", true)
+            e.putStringSet("habits", habitsTmp)
+            e.commit()
         })
+        mDialogBuilder.setNegativeButton("Отмена", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         var alertDialog: AlertDialog = mDialogBuilder.create()
         alertDialog.show()

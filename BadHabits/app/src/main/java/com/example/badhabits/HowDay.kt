@@ -1,10 +1,15 @@
 package com.example.badhabits
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
+import android.util.ArraySet
 import android.util.Log
 import android.view.View
 import android.widget.*
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
 import java.io.*
@@ -24,14 +29,32 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
     var filename = "userHabbits"
 
+    val APP_PREFERENCES_HABITS:String = "userHabits"
+    lateinit var mSettingsHabits: SharedPreferences
 
+
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_how_day)
+
+        mSettingsHabits = getSharedPreferences(APP_PREFERENCES_HABITS, Context.MODE_PRIVATE)
+        var habits = HashSet<String>()
+        if(mSettingsHabits?.contains("habits") == true) habits =
+            (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
+
+        Log.d("AllMain", mSettingsHabits.all.toString())
+        var habitsTmp = Array<String>(habits.size, init= {i:Int -> String.toString()})
         var spinner = findViewById<Spinner>(R.id.spinner)
+        var counter:Int = 0
+        for(i in habits)
+        {
+            habitsTmp[counter] = i
+            counter++
+        }
         spinner!!.onItemSelectedListener = this
         // Create an ArrayAdapter using a simple spinner layout and languages array
-        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_of_items)
+        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, habitsTmp)
         // Set layout to use when the list of choices appear
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Set Adapter to Spinner
@@ -97,10 +120,7 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
         Toast.makeText(this@HowDay, "Сохранено", Toast.LENGTH_SHORT).show()
 
-
-
-
-        Log.d("Mood", rootObject.toString())
+        //Log.d("Mood", rootObject.toString())
     }
 
 }

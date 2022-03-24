@@ -5,11 +5,13 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
+import android.util.ArraySet
 import android.view.View
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
@@ -25,8 +27,8 @@ class Habit : AppCompatActivity() {
     val APP_PREFERENCES:String = "userSettings"
     val APP_PREFERENCES_DATES:String = "userDates"
 
-    var mSettings: SharedPreferences? = null
-    var mSettingsDates: SharedPreferences? = null
+    lateinit var mSettings: SharedPreferences
+    lateinit var mSettingsDates: SharedPreferences
 
     companion object{
         const val HABIT = "habit"
@@ -39,8 +41,19 @@ class Habit : AppCompatActivity() {
         setContentView(R.layout.activity_habbit)
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         mSettingsDates = getSharedPreferences(APP_PREFERENCES_DATES, Context.MODE_PRIVATE);
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         showHabitName()
+
+        val hasVisited: Boolean = mSettingsDates.getBoolean("hasVisited", false)
+        if (!hasVisited) {
+            // выводим нужную активность
+            val e: SharedPreferences.Editor = mSettingsDates.edit()
+            e.putBoolean("hasVisited", true)
+            e.putString("habits", SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date()))
+            e.commit() // не забудьте подтвердить изменения
+        }
+
         showDate()
         showNotifications = intent.getBooleanExtra(Habit.ShowNotifications, false)
         if(showNotifications) {

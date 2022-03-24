@@ -1,6 +1,8 @@
 package com.example.badhabits
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Build
@@ -29,15 +31,32 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     var filename = "userHabbits"
 
+    val APP_PREFERENCES_HABITS:String = "userHabits"
+    lateinit var mSettingsHabits: SharedPreferences
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_how_day_before)
             showDate()
         var spinner = findViewById<Spinner>(R.id.spinner2)
+
+        mSettingsHabits = getSharedPreferences(APP_PREFERENCES_HABITS, Context.MODE_PRIVATE)
+        var habits = HashSet<String>()
+        if(mSettingsHabits?.contains("habits") == true) habits =
+            (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
+
+        var habitsTmp = Array<String>(habits.size, init= {i:Int -> String.toString()})
+        var counter:Int = 0
+        for(i in habits)
+        {
+            habitsTmp[counter] = i
+            counter++
+        }
+
         spinner!!.onItemSelectedListener = this
         // Create an ArrayAdapter using a simple spinner layout and languages array
-        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, list_of_items)
+        val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, habitsTmp)
         // Set layout to use when the list of choices appear
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Set Adapter to Spinner
