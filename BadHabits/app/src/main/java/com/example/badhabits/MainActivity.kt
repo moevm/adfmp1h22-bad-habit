@@ -80,31 +80,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
         //Log.d("AllMain", mSettingsHabits.all.toString())
 
-        var habits = HashSet<String>()
-        if(mSettingsHabits?.contains("habits") == true) habits =
-            (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
-
-        var habitsTmp = Array<String>(habits.size, init= {i:Int -> String.toString()})
-
-        val ll:LinearLayout = findViewById<LinearLayout>(R.id.ll1)
-        var cp:LinearLayout.LayoutParams = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            LinearLayout.LayoutParams.WRAP_CONTENT)
-        cp.gravity = Gravity.CENTER_HORIZONTAL
-        cp.width = 250
-        cp.height = 60
-        cp.topMargin = 10
-
-        for(i in habits)
-        {
-            val myButton = com.google.android.material.button.MaterialButton(this)
-            myButton.setText(i)
-            myButton.setBackgroundColor(Color.parseColor("#6200EE"))
-            myButton.setTextColor(Color.parseColor("#FFFFFF"))
-            myButton.setOnClickListener(this)
-            ll.addView(myButton, cp)
-        }
-
+        showHabitButtons()
         showRandowAdvice()
     }
 
@@ -205,8 +181,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             e.putBoolean("hasVisited", true)
             e.putStringSet("habits", habitsTmp)
             e.commit()
+
+            val ll:LinearLayout = findViewById<LinearLayout>(R.id.ll1)
+            ll.removeAllViews()
+            showHabitButtons()
         })
-        mDialogBuilder.setNegativeButton("Отмена", DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+        mDialogBuilder.setNegativeButton("Отмена", DialogInterface.OnClickListener { dialog, which ->
+            //showHabitButtons()
+            dialog.cancel()
+        })
 
         var alertDialog: AlertDialog = mDialogBuilder.create()
         alertDialog.show()
@@ -223,6 +206,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val adviceT:TextView = findViewById(R.id.advice)
         val numOfAdvice = (0..6).random()
         adviceT.text = list_of_advices[numOfAdvice]
+    }
+
+    fun showHabitButtons()
+    {
+        var habits = HashSet<String>()
+        if(mSettingsHabits?.contains("habits") == true) habits =
+            (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
+
+
+
+        val ll:LinearLayout = findViewById<LinearLayout>(R.id.ll1)
+        var cp:LinearLayout.LayoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT)
+        cp.gravity = Gravity.CENTER_HORIZONTAL
+        cp.width = 250
+        cp.height = 60
+        cp.topMargin = 10
+
+        for(i in habits)
+        {
+            val myButton = com.google.android.material.button.MaterialButton(this)
+            myButton.setText(i)
+            myButton.setBackgroundColor(Color.parseColor("#6200EE"))
+            myButton.setTextColor(Color.parseColor("#FFFFFF"))
+            myButton.setOnClickListener(this)
+            ll.addView(myButton, cp)
+        }
     }
 }
 
