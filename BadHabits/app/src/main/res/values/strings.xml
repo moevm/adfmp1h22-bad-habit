@@ -15,7 +15,6 @@
     <string name="OnNotification">Включить оповещания</string>
     <string name="OffNotification">Выключить оповещания</string>
 
-    <string name="Advice1">Курить - здоровью вредить!</string>
 
     <string name="falures">Срывы</string>
     <string name="longestPeriod">Самый длинный интервал</string>
@@ -24,4 +23,27 @@
     <string name="start">Начало отказа</string>
     <string name="statistics">Статистика</string>
     <string name="default_notification_channel_id">myChannel</string>
+
+
+    <string name="Advice1">Курить - здоровью вредить!</string>
+    <string name="Advice2">Быть упорным – это очень важное качество, но без мотивации у вас вряд ли что-либо получится</string>
+    <string name="Advice3">Вам нужно твердо решиться начать борьбу. Здесь нельзя проявлять слабость, будьте стойкими в своем решении.</string>
+    <string name="Advice4">Триггеры – это те обстоятельства, которые способны спровоцировать вас вновь обратиться к вредным привычкам.</string>
+    <string name="Advice5">Близкие люди могут помочь вам в борьбе, если вы посвятите их в свои намерения.</string>
+    <string name="Advice6">Заниматься самогипнозом – вполне реально.</string>
+    <string name="Advice7">В борьбе с нежелательными привычками нельзя торопиться. Важно не форсировать события.</string>
+    <string name="Advice8">Курить - здоровью вредить!</string>
+    <string name="Advice9">Курить - здоровью вредить!</string>
+    <string name="Advice10">Курить - здоровью вредить!</string>
+    <string name="Advice11">Курить - здоровью вредить!</string>
+    <string name="Advice12">Курить - здоровью вредить!</string>
+    <string name="Advice13">Курить - здоровью вредить!</string>
+    <string name="Advice14">Курить - здоровью вредить!</string>
+    <string name="Advice15">Курить - здоровью вредить!</string>
+    <string name="Advice16">Курить - здоровью вредить!</string>
+    <string name="Advice17">Курить - здоровью вредить!</string>
+    <string name="Advice18">Курить - здоровью вредить!</string>
+    <string name="Advice19">Курить - здоровью вредить!</string>
+
+
 </resources>

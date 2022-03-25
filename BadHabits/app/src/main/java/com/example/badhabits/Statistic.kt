@@ -109,7 +109,7 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
 
         //Log.d("fileOut", inputFileData.toString())
 
-        Log.d("fileOut", userDateFromFile.toString())
+        //Log.d("fileOut", userDateFromFile.toString())
 
         for(habbitName in habits)
         {

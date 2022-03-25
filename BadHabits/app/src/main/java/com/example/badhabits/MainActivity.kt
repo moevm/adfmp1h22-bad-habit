@@ -43,6 +43,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var mSettingsDates: SharedPreferences
     lateinit var mSettingsHabits: SharedPreferences
 
+    var list_of_advices= arrayOf(
+        "Курить - здоровью вредить!",
+        "Быть упорным – это очень важное качество, но без мотивации у вас вряд ли что-либо получится.",
+        "Вам нужно твердо решиться начать борьбу. Здесь нельзя проявлять слабость, будьте стойкими в своем решении.",
+        "Триггеры – это те обстоятельства, которые способны спровоцировать вас вновь обратиться к вредным привычкам.",
+        "Близкие люди могут помочь вам в борьбе, если вы посвятите их в свои намерения.",
+        "Заниматься самогипнозом – вполне реально.",
+        "В борьбе с нежелательными привычками нельзя торопиться. Важно не форсировать события.",
+    )
+
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,7 +64,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
         mSettingsDates = getSharedPreferences(APP_PREFERENCES_DATES, Context.MODE_PRIVATE)
         mSettingsHabits = getSharedPreferences(APP_PREFERENCES_HABITS, Context.MODE_PRIVATE)
-        Log.d("AllMain", mSettingsHabits.all.toString())
+        //Log.d("AllMain", mSettingsHabits.all.toString())
         val hasVisited: Boolean = mSettingsHabits.getBoolean("hasVisited", false)
         if (!hasVisited) {
             // выводим нужную активность
@@ -95,7 +105,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             ll.addView(myButton, cp)
         }
 
-
+        showRandowAdvice()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -206,6 +216,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (p0 != null) {
             goToHabit(p0)
         }
+    }
+
+    fun showRandowAdvice()
+    {
+        val adviceT:TextView = findViewById(R.id.advice)
+        val numOfAdvice = (0..6).random()
+        adviceT.text = list_of_advices[numOfAdvice]
     }
 }
 
