@@ -107,9 +107,9 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
             e.printStackTrace()
         }
 
-        //Log.d("fileOut", inputFileData.toString())
+        //Log.d("fileOut", userDateFromFile.toString())
 
-        Log.d("mSettingsDates", mSettingsDates?.all.toString())
+        //Log.d("mSettingsDates", mSettingsDates?.all.toString())
         //val ed: SharedPreferences.Editor? = mSettingsDates?.edit()
         //ed?.clear()
         //ed?.apply()
@@ -136,13 +136,15 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
                     if(item.getBoolean("distruption") == true)
                     {
                         //Log.d("Item", item.getString("habbit"))
-
-                        val tmpDate = LocalDate.parse(item.getString("Date"), formatter2)
-                        //val tmpDate = LocalDate.parse("16.03.2022", formatter)
-                        if(tmpDate.isAfter(dateToCompare))
-                        {
-                            datesDis.add(tmpDate)
+                        if(item.getString("Date") != "") {
+                            val tmpDate = LocalDate.parse(item.getString("Date"), formatter2)
+                            //val tmpDate = LocalDate.parse("16.03.2022", formatter)
+                            if(tmpDate.isAfter(dateToCompare))
+                            {
+                                datesDis.add(tmpDate)
+                            }
                         }
+
 
                     }
                 }

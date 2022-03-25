@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val hasVisited: Boolean = mSettingsHabits.getBoolean("hasVisited", false)
         if (!hasVisited) {
             // выводим нужную активность
-            Log.d("cond",hasVisited.toString())
+            //Log.d("cond",hasVisited.toString())
             val habits = ArraySet<String>()
             habits.add("Курение")
             habits.add("Алкоголизм")

@@ -26,9 +26,11 @@ class Habit : AppCompatActivity() {
 
     val APP_PREFERENCES:String = "userSettings"
     val APP_PREFERENCES_DATES:String = "userDates"
+    val APP_PREFERENCES_HABITS:String = "userHabits"
 
     lateinit var mSettings: SharedPreferences
     lateinit var mSettingsDates: SharedPreferences
+    lateinit var mSettingsHabits: SharedPreferences
 
     companion object{
         const val HABIT = "habit"
@@ -41,7 +43,7 @@ class Habit : AppCompatActivity() {
         setContentView(R.layout.activity_habbit)
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         mSettingsDates = getSharedPreferences(APP_PREFERENCES_DATES, Context.MODE_PRIVATE);
-
+        mSettingsHabits = getSharedPreferences(APP_PREFERENCES_HABITS, Context.MODE_PRIVATE)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         showHabitName()
 
@@ -128,5 +130,32 @@ class Habit : AppCompatActivity() {
                 startService(service)
             }
         }
+    }
+
+    fun removeHabit(view: View)
+    {
+            var habits = HashSet<String>()
+            if(mSettingsHabits?.contains("habits") == true) {
+                habits =
+                    (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
+                if(habits.contains(habit))
+                {
+                    habits.remove(habit)
+                }
+                if(habits.size < 1)
+                {
+                    habits.add("Курение")
+                    habits.add("Алкоголизм")
+                    habits.add("Чавкание")
+                }
+                val editor:SharedPreferences.Editor = mSettingsHabits.edit()
+                editor.clear()
+                editor.putBoolean("hasVisited", true)
+                editor.putStringSet("habits", habits)
+                editor.apply()
+            }
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+
     }
 }
