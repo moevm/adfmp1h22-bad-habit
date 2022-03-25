@@ -50,7 +50,7 @@ class Habit : AppCompatActivity() {
             // выводим нужную активность
             val e: SharedPreferences.Editor = mSettingsDates.edit()
             e.putBoolean("hasVisited" + habit, true)
-            e.putString("habits"+ habit, SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date()))
+            e.putString("habits"+ habit, SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()))
             e.commit() // не забудьте подтвердить изменения
         }
 
@@ -103,7 +103,8 @@ class Habit : AppCompatActivity() {
             DateTimeFormatter.ofPattern("dd.MM.yyyy"))
 
         val editor: SharedPreferences.Editor = mSettingsDates!!.edit()
-        editor.putString(habit, date.toString())
+        editor.putString("habits" + habit, date.toString())
+        editor.putBoolean("hasVisited" + habit, true)
         editor.apply()
 
         findViewById<TextView>(R.id.daysCountDown).text = "Дней без привычки: $days"

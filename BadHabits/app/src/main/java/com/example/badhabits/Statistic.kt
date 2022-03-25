@@ -109,17 +109,18 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
 
         //Log.d("fileOut", inputFileData.toString())
 
-        //Log.d("fileOut", userDateFromFile.toString())
-
+        Log.d("mSettingsDates", mSettingsDates?.all.toString())
+        //val ed: SharedPreferences.Editor? = mSettingsDates?.edit()
+        //ed?.clear()
+        //ed?.apply()
         for(habbitName in habits)
         {
-            var currentDate: String = "31.12.2019"
-            mSettingsDates?.all
+            var currentDate: String = "2019-12-31"
 
-            if(mSettingsDates?.contains(habbitName) == true) {
+            if(mSettingsDates?.contains("habits" + habbitName) == true) {
                 currentDate =
-                    mSettingsDates!!.getString(habbitName,
-                        "")!!
+                    mSettingsDates!!.getString("habits" + habbitName,
+                        "2019-12-31")!!
             }
             //Log.d("Habbit", habbitName)
             //Log.d("Date", mSettingsDates?.all.toString())

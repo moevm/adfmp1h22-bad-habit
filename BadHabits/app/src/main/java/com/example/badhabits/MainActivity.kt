@@ -113,10 +113,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         //Log.d("Name", habit_name)
 
         var currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        if(mSettingsDates?.contains(habit_name) == true) {
+        if(mSettingsDates?.contains("habits" + habit_name) == true) {
             currentDate =
-                mSettingsDates!!.getString(habit_name,
-                        "2022.10.02")!!
+                mSettingsDates!!.getString("habits" + habit_name,
+                        "2022-10-02")!!
         }
         Log.d("Date", currentDate)
         //intent.putExtra(Habit.DATE, "2022-10-02")
@@ -185,6 +185,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val ll:LinearLayout = findViewById<LinearLayout>(R.id.ll1)
             ll.removeAllViews()
             showHabitButtons()
+
+            val hasVisited: Boolean = mSettingsDates.getBoolean("hasVisited" + userInput.getText().toString(), false)
+            if (!hasVisited) {
+                // выводим нужную активность
+                val ed: SharedPreferences.Editor = mSettingsDates.edit()
+                ed.putBoolean("hasVisited" + userInput.getText().toString(), true)
+                ed.putString("habits"+ userInput.getText().toString(), SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()))
+                ed.commit() // не забудьте подтвердить изменения
+            }
         })
         mDialogBuilder.setNegativeButton("Отмена", DialogInterface.OnClickListener { dialog, which ->
             //showHabitButtons()
