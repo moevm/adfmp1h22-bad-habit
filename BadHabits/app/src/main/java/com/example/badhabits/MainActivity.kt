@@ -118,7 +118,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 mSettingsDates!!.getString("habits" + habit_name,
                         "2022-10-02")!!
         }
-        Log.d("Date", currentDate)
+        //Log.d("Date", currentDate)
         //intent.putExtra(Habit.DATE, "2022-10-02")
         intent.putExtra(Habit.DATE, currentDate)
 
