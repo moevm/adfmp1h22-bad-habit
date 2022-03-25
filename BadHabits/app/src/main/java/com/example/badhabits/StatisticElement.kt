@@ -16,6 +16,9 @@ class StatisticElement {
     var failures: List<LocalDate> = ArrayList()
 
     @RequiresApi(Build.VERSION_CODES.O)
+    constructor(){}
+
+    @RequiresApi(Build.VERSION_CODES.O)
     constructor(habit: String, start: LocalDate, failures: List<LocalDate>) {
         this.habit = habit
         this.start = start
