@@ -2,15 +2,9 @@ name: Test
 on: [push]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-    steps: 
-      - uses: actions/checkout@v2
-
-      - name: Unit tests
-        run: ./gradlew test # use can use another command to run juni test like: ./gradlew testDebugUnitTest
-        continue-on-error: true # IMPORTANT: allow pipeline to continue to Android Test Report step
-
-      - name: Make Unit test report
-        uses: doanpt/AndroidTestReportAction@v1.0
-        if: ${{ always() }} # IMPORTANT: run Android Test Report regardless
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run some unit tests
+        run: ./gradlew testStageDebugUnitTest
