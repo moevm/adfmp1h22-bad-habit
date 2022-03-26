@@ -34,7 +34,7 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     val APP_PREFERENCES_HABITS:String = "userHabits"
     lateinit var mSettingsHabits: SharedPreferences
 
-    val file_controller: fileController = fileController()
+    val file_controller: FileController = FileController()
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -10,7 +10,7 @@ import java.io.*
 
 import java.util.*
 
-class fileController {
+class FileController {
     var filename = "userHabbits"
 
     fun loadFromFile(inputStream: FileInputStream   ): JSONArray {
@@ -48,7 +48,7 @@ class fileController {
             bw.write(tmpUserData)
             // закрываем поток
             bw.close()
-            Log.d("fileIn", "Файл записан")
+          //  Log.d("fileIn", "Файл записан")
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
         } catch (e: IOException) {

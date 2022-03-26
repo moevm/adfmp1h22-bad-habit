@@ -37,7 +37,7 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
     val APP_PREFERENCES_HABITS:String = "userHabits"
     lateinit var mSettingsHabits: SharedPreferences
 
-    val file_Controller: fileController = fileController()
+    val file_Controller: FileController = FileController()
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
