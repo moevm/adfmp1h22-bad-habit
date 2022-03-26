@@ -127,7 +127,10 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
                             //val tmpDate = LocalDate.parse("16.03.2022", formatter)
                             if(tmpDate.isAfter(dateToCompare))
                             {
-                                datesDis.add(tmpDate)
+                                if(!datesDis.contains(tmpDate)) {
+                                    datesDis.add(tmpDate)
+
+                                }
                             }
                         }
 
@@ -135,6 +138,7 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
                     }
                 }
             }
+            datesDis.sort()
             sources.add(StatisticElement(habbitName, dateToCompare, datesDis))
 
         }
