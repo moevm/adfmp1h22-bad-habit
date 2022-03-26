@@ -37,6 +37,8 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
     val APP_PREFERENCES_HABITS:String = "userHabits"
     lateinit var mSettingsHabits: SharedPreferences
 
+    val file_Controller: fileController = fileController()
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,23 +91,7 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
             (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
 
         var userDateFromFile:JSONArray = JSONArray()
-
-        try {
-            // открываем поток для чтения
-            val br = BufferedReader(
-                InputStreamReader(openFileInput(filename))
-            )
-            var str: String? = ""
-            // читаем содержимое
-            while (br.readLine().also { str = it } != null) {
-                val obj = JSONObject(str.toString())
-                userDateFromFile.put(obj)
-            }
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+        userDateFromFile  = file_Controller.loadFromFile(openFileInput(filename))
 
         //Log.d("fileOut", userDateFromFile.toString())
 

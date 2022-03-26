@@ -23,7 +23,7 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
     var disruptionWas: Boolean = false
     var habbit:String = ""
-    var currentDate: String = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()).format(Date())
+    var currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
     var moodToday: String = ""
     var feelToday: String = ""
 
@@ -31,6 +31,8 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
     val APP_PREFERENCES_HABITS:String = "userHabits"
     lateinit var mSettingsHabits: SharedPreferences
+
+    val file_controller:fileController = fileController()
 
 
     @RequiresApi(Build.VERSION_CODES.M)
@@ -102,21 +104,7 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
 
         var tmpUserData:String = rootObject.toString() + "\n"
-        try {
-            // отрываем поток для записи
-            val bw = BufferedWriter(
-                OutputStreamWriter(openFileOutput(filename, MODE_APPEND))
-            )
-            // пишем данные
-            bw.write(tmpUserData)
-            // закрываем поток
-            bw.close()
-            Log.d("fileIn", "Файл записан")
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+        file_controller.saveToFile(tmpUserData,openFileOutput(filename, MODE_APPEND))
 
         Toast.makeText(this@HowDay, "Сохранено", Toast.LENGTH_SHORT).show()
 

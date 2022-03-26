@@ -26,6 +26,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.text.SimpleDateFormat
 import java.util.*
+import com.example.badhabits.DataController as DataController
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -42,6 +43,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var mSettings: SharedPreferences
     lateinit var mSettingsDates: SharedPreferences
     lateinit var mSettingsHabits: SharedPreferences
+
+    val dataController: DataController = DataController()
 
     var list_of_advices= arrayOf(
         "Курить - здоровью вредить!",
@@ -65,20 +68,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mSettingsDates = getSharedPreferences(APP_PREFERENCES_DATES, Context.MODE_PRIVATE)
         mSettingsHabits = getSharedPreferences(APP_PREFERENCES_HABITS, Context.MODE_PRIVATE)
         //Log.d("AllMain", mSettingsHabits.all.toString())
-        val hasVisited: Boolean = mSettingsHabits.getBoolean("hasVisited", false)
-        if (!hasVisited) {
-            // выводим нужную активность
-            //Log.d("cond",hasVisited.toString())
-            val habits = ArraySet<String>()
-            habits.add("Курение")
-            habits.add("Алкоголизм")
-            habits.add("Чавкание")
-            val e: SharedPreferences.Editor = mSettingsHabits.edit()
-            e.putBoolean("hasVisited", true)
-            e.putStringSet("habits", habits)
-            e.apply() // не забудьте подтвердить изменения
-        }
-        //Log.d("AllMain", mSettingsHabits.all.toString())
+        dataController.loadOnCreateMainActivity(mSettingsHabits)
 
         showHabitButtons()
         showRandowAdvice()
@@ -110,22 +100,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val habit_name = (view as MaterialButton).text.toString()
         intent.putExtra(Habit.HABIT, habit_name)
 
-        //Log.d("Name", habit_name)
-
-        var currentDate: String = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
-        if(mSettingsDates?.contains("habits" + habit_name) == true) {
-            currentDate =
-                mSettingsDates!!.getString("habits" + habit_name,
-                        "2022-10-02")!!
-        }
-        //Log.d("Date", currentDate)
+        var currentDate: String = dataController.getDateFromDates(mSettingsDates, habit_name)
         //intent.putExtra(Habit.DATE, "2022-10-02")
         intent.putExtra(Habit.DATE, currentDate)
 
-        var notificationBoolean = false
-        if(mSettings?.contains(habit_name) == true) {
-            notificationBoolean = mSettings!!.getBoolean(habit_name, false)
-        }
+        var notificationBoolean = dataController.getNotificationFromSettings(mSettings, habit_name)
 
         intent.putExtra(Habit.ShowNotifications, notificationBoolean)
         startActivity(intent)
@@ -156,44 +135,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         mDialogBuilder.setPositiveButton("Сохранить", DialogInterface.OnClickListener { dialog, which ->
             // Here you get get input text from the Edittext
             //Log.d("Habbit",userInput.getText().toString())
-            var habits = HashSet<String>()
-            var habitsTmp = HashSet<String>()
-            if(mSettingsHabits?.contains("habits") == true) habits =
-                (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
-
-            var flagContain:Boolean = false
-
-            for(i in habits)
-            {
-                if(i == userInput.getText().toString())
-                {
-                    flagContain = true
-                }
-            }
-            habitsTmp = habits
-            if(!flagContain)
-            {
-                habitsTmp.add(userInput.getText().toString())
-            }
-            //Log.d("Habbit",habits.toString())
-            val e: SharedPreferences.Editor = mSettingsHabits.edit()
-            e.clear()
-            e.putBoolean("hasVisited", true)
-            e.putStringSet("habits", habitsTmp)
-            e.commit()
+            dataController.putDataIntoStorage(mSettingsHabits, userInput.getText().toString())
 
             val ll:LinearLayout = findViewById<LinearLayout>(R.id.ll1)
             ll.removeAllViews()
             showHabitButtons()
 
-            val hasVisited: Boolean = mSettingsDates.getBoolean("hasVisited" + userInput.getText().toString(), false)
-            if (!hasVisited) {
-                // выводим нужную активность
-                val ed: SharedPreferences.Editor = mSettingsDates.edit()
-                ed.putBoolean("hasVisited" + userInput.getText().toString(), true)
-                ed.putString("habits"+ userInput.getText().toString(), SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()))
-                ed.commit() // не забудьте подтвердить изменения
-            }
+            dataController.checkVisited(mSettingsDates,userInput.getText().toString())
         })
         mDialogBuilder.setNegativeButton("Отмена", DialogInterface.OnClickListener { dialog, which ->
             //showHabitButtons()
