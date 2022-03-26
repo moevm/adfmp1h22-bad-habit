@@ -4,9 +4,7 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-    steps: AndroidTestReportAction
-parse test result for android test report
-
+    steps: 
       - uses: actions/checkout@v2
 
       - name: Unit tests
