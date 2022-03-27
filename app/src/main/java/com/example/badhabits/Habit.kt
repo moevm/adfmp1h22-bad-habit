@@ -62,7 +62,6 @@ class Habit : AppCompatActivity() {
 
         val hasVisited: Boolean = mSettingsDates.getBoolean("hasVisited" + habit, false)
         if (!hasVisited) {
-            // выводим нужную активность
             val e: SharedPreferences.Editor = mSettingsDates.edit()
             e.putBoolean("hasVisited" + habit, true)
             e.putString("habits"+ habit, SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()))
