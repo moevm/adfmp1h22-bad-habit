@@ -20,7 +20,7 @@ import java.util.*
 class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     companion object{
         const val DATE = "date"
-        const val HABIT = "habit"
+        var HABIT = "habit"
     }
     var list_of_items = arrayOf("Курение", "Алкоголизм", "Чавкание")
 
@@ -65,12 +65,16 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         // Set Adapter to Spinner
         spinner!!.adapter = aa
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        if (HABIT.isNotEmpty()){
+        //Log.d("habit", intent.getStringExtra(HABIT).toString())
+        var habit_name = intent.getStringExtra(HABIT).toString()
+        if (habit_name != null){
             var i = 0
+
             for(str in habitsTmp){
                 i += 1
-                if (str == HABIT){
-                    spinner.setSelection(i)
+
+                if (str == habit_name){
+                    spinner.setSelection(i - 1)
                 }
             }
         }
@@ -100,6 +104,7 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     fun getDate(view: View){
         var spinnerH:Spinner = findViewById(R.id.spinner2);
         val intent = Intent(this, ChooseDate::class.java)
+        //Log.d("selected", spinnerH.selectedItem.toString())
         intent.putExtra(ChooseDate.HABIT, spinnerH.selectedItem.toString())
         startActivity(intent)
     }

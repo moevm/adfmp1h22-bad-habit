@@ -28,12 +28,13 @@ class ChooseDate : ChooseDateBase() {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val habitName = intent.getStringExtra(HABIT)
         val intent = Intent(this, HowDayBefore::class.java)
         var date = ""
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             date = LocalDate.of(year, month + 1, dayOfMonth).toString()
             intent.putExtra(HowDayBefore.DATE, date)
-            intent.putExtra(HowDayBefore.HABIT, HABIT)
+            intent.putExtra(HowDayBefore.HABIT, habitName)
             startActivity(intent)
         }
     }
