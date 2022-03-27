@@ -54,11 +54,8 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
             counter++
         }
         spinner!!.onItemSelectedListener = this
-        // Create an ArrayAdapter using a simple spinner layout and languages array
         val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, habitsTmp)
-        // Set layout to use when the list of choices appear
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        // Set Adapter to Spinner
         spinner!!.adapter = aa
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
@@ -76,16 +73,13 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
     }
 
     fun onNoButtonClick(view: View){
-        // логика сохранения ответа
         disruptionWas = false
 
     }
     fun onYesButtonClick(view: View){
-        // логика сохранения ответа
         disruptionWas = true
     }
     fun onSaveButtonClick(view: View){
-        // логика сохранения ответа
         var seekBarM:SeekBar = findViewById(R.id.moodSeek);
         var seekBarF:SeekBar = findViewById(R.id.feelSeek);
         var spinnerH:Spinner = findViewById(R.id.spinner);
@@ -105,8 +99,6 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
         file_controller.saveToFile(tmpUserData,openFileOutput(filename, MODE_APPEND))
 
         Toast.makeText(this@HowDay, "Сохранено", Toast.LENGTH_SHORT).show()
-
-        //Log.d("Mood", rootObject.toString())
     }
 
 }
