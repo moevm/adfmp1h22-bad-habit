@@ -65,7 +65,7 @@ class Habit : AppCompatActivity() {
             val e: SharedPreferences.Editor = mSettingsDates.edit()
             e.putBoolean("hasVisited" + habit, true)
             e.putString("habits"+ habit, SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()))
-            e.commit() // не забудьте подтвердить изменения
+            e.commit()
         }
 
         showDate()
