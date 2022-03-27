@@ -60,7 +60,6 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         spinner!!.onItemSelectedListener = this
         val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, habitsTmp)
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        // Set Adapter to Spinner
         spinner!!.adapter = aa
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         if (HABIT.isNotEmpty()){
@@ -87,11 +86,9 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
     }
 
     fun onNoButtonClick(view: View){
-        // логика сохранения ответа
         disruptionWas = false
     }
     fun onYesButtonClick(view: View){
-        // логика сохранения ответа
         disruptionWas = true
     }
 
