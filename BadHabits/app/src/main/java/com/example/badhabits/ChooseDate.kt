@@ -22,6 +22,9 @@ open class ChooseDateBase: AppCompatActivity() {
 }
 
 class ChooseDate : ChooseDateBase() {
+    companion object{
+        const val HABIT = "habit"
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +33,7 @@ class ChooseDate : ChooseDateBase() {
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             date = LocalDate.of(year, month + 1, dayOfMonth).toString()
             intent.putExtra(HowDayBefore.DATE, date)
+            intent.putExtra(HowDayBefore.HABIT, HABIT)
             startActivity(intent)
         }
     }

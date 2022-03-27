@@ -38,10 +38,18 @@ class Habit : AppCompatActivity() {
     private var timerTask: TimerTask? = null
 
     companion object{
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun getPeriod(between: Period?): Int {
+            val days = (between?.years ?: 3) * 365 + (between?.months ?: 3) * 30 + (between?.days
+                ?: 3)
+            return days
+        }
+
         const val HABIT = "habit"
         const val DATE = "date"
         const val ShowNotifications = "showNotifications"
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,13 +105,20 @@ class Habit : AppCompatActivity() {
         }
         setButtonText(showNotifications)
     }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    public fun getPeriod(period: Period): Int {
+        val days = period.years * 365 + period.months * 30 + period.days
+        return days
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun showDate(){
         val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
         val date = LocalDate.parse(intent.getStringExtra(Habit.DATE), formatter)
         val period = Period.between(date, LocalDate.now())
-        val days = period.years * 365 + period.months * 30 + period.days
+        val days = getPeriod(period)
         val dateInFormat = date.format(
             DateTimeFormatter.ofPattern("dd.MM.yyyy"))
 

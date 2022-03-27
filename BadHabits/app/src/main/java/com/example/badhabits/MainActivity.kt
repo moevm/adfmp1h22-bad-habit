@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         button = findViewById(R.id.prompt_button)
-
         mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE)
         mSettingsDates = getSharedPreferences(APP_PREFERENCES_DATES, Context.MODE_PRIVATE)
         mSettingsHabits = getSharedPreferences(APP_PREFERENCES_HABITS, Context.MODE_PRIVATE)
