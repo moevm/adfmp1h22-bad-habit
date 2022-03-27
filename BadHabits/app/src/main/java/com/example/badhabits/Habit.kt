@@ -96,7 +96,6 @@ class Habit : AppCompatActivity() {
             editor.apply()
         }
         setButtonText(showNotifications)
-        //NotificationUtils().setNotification(habit.lowercase(), 60000, this@Habit)
     }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun showDate(){

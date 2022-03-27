@@ -45,7 +45,6 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
         if(mSettingsHabits?.contains("habits") == true) habits =
             (mSettingsHabits.getStringSet("habits", emptySet()) as HashSet<String>)
 
-        //Log.d("AllMain", mSettingsHabits.all.toString())
         var habitsTmp = Array<String>(habits.size, init= {i:Int -> String.toString()})
         var spinner = findViewById<Spinner>(R.id.spinner)
         var counter:Int = 0
