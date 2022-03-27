@@ -11,12 +11,14 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
+import kotlinx.coroutines.withTimeout
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.Period
 import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.concurrent.fixedRateTimer
+import kotlin.concurrent.schedule
 
 
 class Habit : AppCompatActivity() {
@@ -24,13 +26,16 @@ class Habit : AppCompatActivity() {
     lateinit var timer: Timer
     var showNotifications = false
 
-    val APP_PREFERENCES:String = "userSettings"
-    val APP_PREFERENCES_DATES:String = "userDates"
-    val APP_PREFERENCES_HABITS:String = "userHabits"
+    private val notificationTimeout = 20000L
+    private val APP_PREFERENCES:String = "userSettings"
+    private val APP_PREFERENCES_DATES:String = "userDates"
+    private val APP_PREFERENCES_HABITS:String = "userHabits"
 
     lateinit var mSettings: SharedPreferences
     lateinit var mSettingsDates: SharedPreferences
     lateinit var mSettingsHabits: SharedPreferences
+
+    private var timerTask: TimerTask? = null
 
     companion object{
         const val HABIT = "habit"
@@ -59,7 +64,7 @@ class Habit : AppCompatActivity() {
         showDate()
         showNotifications = intent.getBooleanExtra(Habit.ShowNotifications, false)
         if(showNotifications) {
-            timer = startTimer(findViewById(R.id.enableNotifications))
+            startTimer(findViewById(R.id.enableNotifications))
         }
         setButtonText(showNotifications)
     }
@@ -79,7 +84,7 @@ class Habit : AppCompatActivity() {
     }
     fun switchNotifications(view: View) {
         if(!showNotifications) {
-            timer = startTimer(view)
+            startTimer(view)
             showNotifications = true
             val editor: SharedPreferences.Editor = mSettings!!.edit()
             editor.putBoolean(habit, showNotifications)
@@ -89,7 +94,6 @@ class Habit : AppCompatActivity() {
             val editor: SharedPreferences.Editor = mSettings!!.edit()
             editor.putBoolean(habit, showNotifications)
             editor.apply()
-            timer.cancel()
         }
         setButtonText(showNotifications)
         //NotificationUtils().setNotification(habit.lowercase(), 60000, this@Habit)
@@ -119,17 +123,24 @@ class Habit : AppCompatActivity() {
             findViewById<MaterialButton>(R.id.enableNotifications).text = "Выключить оповещения"
         }
     }
-    private  fun startTimer(view: View): Timer {
-        return fixedRateTimer("timer",false,0,10000){
-            this@Habit.runOnUiThread {
-                val service = Intent(view.context, NotificationService::class.java)
-                //val habit = intent.getStringExtra("broadcast.Message")
-                service.putExtra("reason", "notification")
-                service.putExtra("timestamp", Calendar.getInstance().timeInMillis)
-                service.putExtra(HABIT, habit.lowercase())
-                startService(service)
+    private  fun startTimer(view: View) {
+        timerTask?.cancel()
+        timerTask = Timer().schedule(notificationTimeout) {
+            val showNotifications = mSettings!!.getBoolean(habit, false)
+            print("$habit $showNotifications")
+            if(showNotifications) {
+                notifyUser(view)
+                startTimer(view)
             }
         }
+    }
+
+    private fun notifyUser(view: View) {
+        val service = Intent(view.context, NotificationService::class.java)
+        service.putExtra("reason", "notification")
+        service.putExtra("timestamp", Calendar.getInstance().timeInMillis)
+        service.putExtra(HABIT, habit.lowercase())
+        startService(service)
     }
 
     fun removeHabit(view: View)
