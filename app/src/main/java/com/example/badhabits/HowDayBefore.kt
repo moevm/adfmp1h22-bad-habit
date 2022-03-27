@@ -58,9 +58,7 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         }
 
         spinner!!.onItemSelectedListener = this
-        // Create an ArrayAdapter using a simple spinner layout and languages array
         val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, habitsTmp)
-        // Set layout to use when the list of choices appear
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         // Set Adapter to Spinner
         spinner!!.adapter = aa
