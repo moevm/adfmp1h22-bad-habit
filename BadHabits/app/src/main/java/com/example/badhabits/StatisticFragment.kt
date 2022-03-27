@@ -56,9 +56,9 @@ class StatisticFragment : Fragment {
             constraintSet.clone(constraintLayout)
             constraintSet.connect(
                 textView.id,
-                ConstraintSet.TOP, // put text view top side bottom of button
-                PARENT_ID, // button to put text view bellow it
-                ConstraintSet.TOP, // button bottom to put text view bellow it,
+                ConstraintSet.TOP,
+                PARENT_ID,
+                ConstraintSet.TOP,
                 failureId * 20
             )
             constraintSet.applyTo(constraintLayout)

@@ -16,8 +16,6 @@ class DataController {
     {
         val hasVisited: Boolean = mSettingsHabits.getBoolean("hasVisited", false)
         if (!hasVisited) {
-            // выводим нужную активность
-            //Log.d("cond",hasVisited.toString())
             val habits = ArraySet<String>()
             habits.add("Курение")
             habits.add("Алкоголизм")
@@ -25,7 +23,7 @@ class DataController {
             val e: SharedPreferences.Editor = mSettingsHabits.edit()
             e.putBoolean("hasVisited", true)
             e.putStringSet("habits", habits)
-            e.apply() // не забудьте подтвердить изменения
+            e.apply()
         }
     }
 
@@ -68,7 +66,6 @@ class DataController {
         {
             habitsTmp.add(userInput)
         }
-        //Log.d("Habbit",habits.toString())
         val e: SharedPreferences.Editor = mSettingsHabits.edit()
         e.clear()
         e.putBoolean("hasVisited", true)
@@ -80,11 +77,10 @@ class DataController {
     {
         val hasVisited: Boolean = mSettingsDates.getBoolean("hasVisited" + userInput, false)
         if (!hasVisited) {
-            // выводим нужную активность
             val ed: SharedPreferences.Editor = mSettingsDates.edit()
             ed.putBoolean("hasVisited" + userInput, true)
             ed.putString("habits"+ userInput, SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date()))
-            ed.commit() // не забудьте подтвердить изменения
+            ed.commit()
         }
     }
 
