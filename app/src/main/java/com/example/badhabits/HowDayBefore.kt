@@ -134,6 +134,7 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         file_controller.saveToFile(tmpUserData, openFileOutput(filename, MODE_APPEND))
 
         Toast.makeText(this@HowDayBefore, "Сохранено", Toast.LENGTH_SHORT).show()
-
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
