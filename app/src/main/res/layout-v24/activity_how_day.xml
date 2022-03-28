@@ -19,10 +19,7 @@
 
     <SeekBar
         android:id="@+id/feelSeek"
-        android:progressTint="@android:color/holo_green_light"
-        android:thumbTint="#D003FF"
-        android:tickMark="@drawable/tickmark"
-        android:tickMarkTint="@color/teal_200"
+        style="@android:style/Widget.Material.SeekBar.Discrete"
         android:layout_width="145dp"
         android:layout_height="22dp"
         android:layout_marginStart="132dp"
@@ -108,10 +105,6 @@
 
     <SeekBar
         android:id="@+id/moodSeek"
-        android:progressTint="@android:color/holo_green_light"
-        android:thumbTint="#D003FF"
-        android:tickMark="@drawable/tickmark"
-        android:tickMarkTint="@color/teal_200"
         android:layout_width="145dp"
         android:layout_height="22dp"
         android:layout_marginStart="132dp"

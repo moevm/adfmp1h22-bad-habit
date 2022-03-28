@@ -75,6 +75,47 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
                 }
             }
         }
+
+        var seekBarM:SeekBar = findViewById(R.id.moodSeek);
+        var seekBarF:SeekBar = findViewById(R.id.feelSeek);
+        findViewById<TextView>(R.id.textViewFeel2).text = "0%"
+        findViewById<TextView>(R.id.textViewMood2).text = "0%"
+        seekBarM?.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar,
+                                           progress: Int, fromUser: Boolean) {
+                // write custom code for progress is changed
+                findViewById<TextView>(R.id.textViewMood2).text   = progress.toString()  + "%"
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+
+
+        })
+        seekBarF?.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar,
+                                           progress: Int, fromUser: Boolean) {
+                // write custom code for progress is changed
+                findViewById<TextView>(R.id.textViewFeel2).text   = progress.toString()  + "%"
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+
+
+        })
     }
     fun returnToMain(view: View){
         val intent = Intent(this, MainActivity::class.java)

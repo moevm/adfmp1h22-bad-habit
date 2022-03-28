@@ -62,9 +62,45 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         var seekBarM:SeekBar = findViewById(R.id.moodSeek);
+        var seekBarF:SeekBar = findViewById(R.id.feelSeek);
+        findViewById<TextView>(R.id.textViewFeel).text = "0%"
+        findViewById<TextView>(R.id.textViewMood).text = "0%"
+        seekBarM?.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar,
+                                           progress: Int, fromUser: Boolean) {
+                // write custom code for progress is changed
+                findViewById<TextView>(R.id.textViewMood).text   = progress.toString()  + "%"
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
 
 
+        })
+        seekBarF?.setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar,
+                                           progress: Int, fromUser: Boolean) {
+                // write custom code for progress is changed
+                findViewById<TextView>(R.id.textViewFeel).text   = progress.toString()  + "%"
+            }
 
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+
+            }
+
+
+        })
     }
 
     fun writeOnDrawable(drawableId: Int, text: String?): BitmapDrawable? {

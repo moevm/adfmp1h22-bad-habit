@@ -140,4 +140,22 @@
         android:textAlignment="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewMood2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/moodSeek"
+        app:layout_constraintTop_toBottomOf="@+id/yourMood" />
+
+    <TextView
+        android:id="@+id/textViewFeel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/feelSeek"
+        app:layout_constraintTop_toBottomOf="@+id/yourMood2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
