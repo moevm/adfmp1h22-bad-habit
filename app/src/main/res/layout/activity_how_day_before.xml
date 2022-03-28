@@ -65,21 +65,27 @@
 
     <SeekBar
         android:id="@+id/moodSeek"
+        style="@android:style/Widget.Material.SeekBar.Discrete"
+        android:max="10"
         android:layout_width="145dp"
         android:layout_height="22dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="304dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="n" />
 
     <SeekBar
         android:id="@+id/feelSeek"
+        style="@android:style/Widget.Material.SeekBar.Discrete"
+        android:max="10"
         android:layout_width="145dp"
         android:layout_height="22dp"
         android:layout_marginStart="80dp"
         android:layout_marginTop="360dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="n" />
 
     <TextView
         android:id="@+id/yourMood"

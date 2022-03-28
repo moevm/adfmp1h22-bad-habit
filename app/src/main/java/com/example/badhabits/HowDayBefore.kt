@@ -85,7 +85,7 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             override fun onProgressChanged(seek: SeekBar,
                                            progress: Int, fromUser: Boolean) {
                 // write custom code for progress is changed
-                findViewById<TextView>(R.id.textViewMood2).text   = progress.toString()  + "%"
+                findViewById<TextView>(R.id.textViewMood2).text   = (progress*10).toString()  + "%"
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -103,7 +103,7 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
             override fun onProgressChanged(seek: SeekBar,
                                            progress: Int, fromUser: Boolean) {
                 // write custom code for progress is changed
-                findViewById<TextView>(R.id.textViewFeel2).text   = progress.toString()  + "%"
+                findViewById<TextView>(R.id.textViewFeel2).text   = (progress*10).toString()  + "%"
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -157,8 +157,8 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         var seekBarM: SeekBar = findViewById(R.id.moodSeek);
         var seekBarF: SeekBar = findViewById(R.id.feelSeek);
         var spinnerH:Spinner = findViewById(R.id.spinner2);
-        moodToday = seekBarM.getProgress().toString()
-        feelToday = seekBarF.getProgress().toString()
+        moodToday = (seekBarM.getProgress()*10).toString()
+        feelToday = (seekBarF.getProgress()*10).toString()
         habbit = spinnerH.selectedItem.toString()
         currentDate = findViewById<TextView>(R.id.date).text.toString()
 

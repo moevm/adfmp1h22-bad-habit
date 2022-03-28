@@ -19,10 +19,8 @@
 
     <SeekBar
         android:id="@+id/feelSeek"
-        android:progressTint="@android:color/holo_green_light"
-        android:thumbTint="#D003FF"
-        android:tickMark="@drawable/tickmark"
-        android:tickMarkTint="@color/teal_200"
+        style="@android:style/Widget.Material.SeekBar.Discrete"
+        android:max="10"
         android:layout_width="145dp"
         android:layout_height="22dp"
         android:layout_marginStart="132dp"
@@ -30,7 +28,8 @@
         android:layout_marginEnd="134dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="n" />
 
     <TextView
         android:id="@+id/yourMood2"
@@ -108,10 +107,8 @@
 
     <SeekBar
         android:id="@+id/moodSeek"
-        android:progressTint="@android:color/holo_green_light"
-        android:thumbTint="#D003FF"
-        android:tickMark="@drawable/tickmark"
-        android:tickMarkTint="@color/teal_200"
+        style="@android:style/Widget.Material.SeekBar.Discrete"
+        android:max="10"
         android:layout_width="145dp"
         android:layout_height="22dp"
         android:layout_marginStart="132dp"
@@ -119,7 +116,8 @@
         android:layout_marginEnd="134dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="n" />
 
     <Button
         android:id="@+id/saveButton"

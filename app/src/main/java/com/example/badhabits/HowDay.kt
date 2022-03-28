@@ -70,7 +70,7 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
             override fun onProgressChanged(seek: SeekBar,
                                            progress: Int, fromUser: Boolean) {
                 // write custom code for progress is changed
-                findViewById<TextView>(R.id.textViewMood).text   = progress.toString()  + "%"
+                findViewById<TextView>(R.id.textViewMood).text   = (progress*10).toString()  + "%"
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -88,7 +88,7 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
             override fun onProgressChanged(seek: SeekBar,
                                            progress: Int, fromUser: Boolean) {
                 // write custom code for progress is changed
-                findViewById<TextView>(R.id.textViewFeel).text   = progress.toString()  + "%"
+                findViewById<TextView>(R.id.textViewFeel).text   = (progress*10).toString()  + "%"
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {
@@ -142,8 +142,8 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
         var seekBarM:SeekBar = findViewById(R.id.moodSeek);
         var seekBarF:SeekBar = findViewById(R.id.feelSeek);
         var spinnerH:Spinner = findViewById(R.id.spinner);
-        moodToday = seekBarM.getProgress().toString()
-        feelToday = seekBarF.getProgress().toString()
+        moodToday = (seekBarM.getProgress()*10).toString()
+        feelToday = (seekBarF.getProgress()*10).toString()
         habbit = spinnerH.selectedItem.toString()
 
         val rootObject= JSONObject()
