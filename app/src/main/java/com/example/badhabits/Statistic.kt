@@ -101,45 +101,45 @@ class Statistic : AppCompatActivity(R.layout.activity_statistic) {
         //ed?.apply()
         for(habbitName in habits)
         {
-            var currentDate: String = "2019-12-31"
+            if(habbitName.length < 12) {
+                var currentDate: String = "2019-12-31"
 
-            if(mSettingsDates?.contains("habits" + habbitName) == true) {
-                currentDate =
-                    mSettingsDates!!.getString("habits" + habbitName,
-                        "2019-12-31")!!
-            }
-            //Log.d("Habbit", habbitName)
-            //Log.d("Date", mSettingsDates?.all.toString())
-            val dateToCompare = LocalDate.parse(currentDate, formatter2)
-            val datesDis = ArrayList<LocalDate>()
+                if (mSettingsDates?.contains("habits" + habbitName) == true) {
+                    currentDate =
+                        mSettingsDates!!.getString(
+                            "habits" + habbitName,
+                            "2019-12-31"
+                        )!!
+                }
+                //Log.d("Habbit", habbitName)
+                //Log.d("Date", mSettingsDates?.all.toString())
+                val dateToCompare = LocalDate.parse(currentDate, formatter2)
+                val datesDis = ArrayList<LocalDate>()
 
-            for (i in 0 until userDateFromFile.length())
-            {
-                val item = userDateFromFile.getJSONObject(i)
-                if(habbitName == item.getString("habbit"))
-                {
-                    //Log.d("distruption",item.getBoolean("distruption").toString())
-                    if(item.getBoolean("distruption") == true)
-                    {
-                        //Log.d("Item", item.getString("habbit"))
-                        if(item.getString("Date") != "") {
-                            val tmpDate = LocalDate.parse(item.getString("Date"), formatter2)
-                            //val tmpDate = LocalDate.parse("16.03.2022", formatter)
-                            if(tmpDate.isAfter(dateToCompare))
-                            {
-                                if(!datesDis.contains(tmpDate)) {
-                                    datesDis.add(tmpDate)
+                for (i in 0 until userDateFromFile.length()) {
+                    val item = userDateFromFile.getJSONObject(i)
+                    if (habbitName == item.getString("habbit")) {
+                        //Log.d("distruption",item.getBoolean("distruption").toString())
+                        if (item.getBoolean("distruption") == true) {
+                            //Log.d("Item", item.getString("habbit"))
+                            if (item.getString("Date") != "") {
+                                val tmpDate = LocalDate.parse(item.getString("Date"), formatter2)
+                                //val tmpDate = LocalDate.parse("16.03.2022", formatter)
+                                if (tmpDate.isAfter(dateToCompare)) {
+                                    if (!datesDis.contains(tmpDate)) {
+                                        datesDis.add(tmpDate)
 
+                                    }
                                 }
                             }
+
+
                         }
-
-
                     }
                 }
+                datesDis.sort()
+                sources.add(StatisticElement(habbitName, dateToCompare, datesDis))
             }
-            datesDis.sort()
-            sources.add(StatisticElement(habbitName, dateToCompare, datesDis))
 
         }
 

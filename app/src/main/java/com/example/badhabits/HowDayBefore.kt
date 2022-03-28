@@ -53,9 +53,12 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
         var counter:Int = 0
         for(i in habits)
         {
-            habitsTmp[counter] = i
-            counter++
+            if(i.length < 12) {
+                habitsTmp[counter] = i
+                counter++
+            }
         }
+        habitsTmp = habitsTmp.sliceArray(IntRange(0,counter - 1))
 
         spinner!!.onItemSelectedListener = this
         val aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, habitsTmp)

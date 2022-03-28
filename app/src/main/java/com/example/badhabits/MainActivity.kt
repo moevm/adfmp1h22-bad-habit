@@ -183,12 +183,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         for(i in habits)
         {
-            val myButton = com.google.android.material.button.MaterialButton(this)
-            myButton.setText(i)
-            myButton.setBackgroundColor(Color.parseColor("#6200EE"))
-            myButton.setTextColor(Color.parseColor("#FFFFFF"))
-            myButton.setOnClickListener(this)
-            ll.addView(myButton, cp)
+            if(i.length < 12) {
+                val myButton = com.google.android.material.button.MaterialButton(this)
+                myButton.setText(i)
+                myButton.setBackgroundColor(Color.parseColor("#6200EE"))
+                myButton.setTextColor(Color.parseColor("#FFFFFF"))
+                myButton.setOnClickListener(this)
+                ll.addView(myButton, cp)
+            }
         }
     }
 }
