@@ -3,10 +3,10 @@ package com.example.badhabits
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.*
+import android.graphics.drawable.BitmapDrawable
 import android.os.Build
 import android.os.Bundle
-import android.util.ArraySet
-import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.annotation.RequiresApi
@@ -60,6 +60,25 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
         aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner!!.adapter = aa
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        var seekBarM:SeekBar = findViewById(R.id.moodSeek);
+
+
+
+    }
+
+    fun writeOnDrawable(drawableId: Int, text: String?): BitmapDrawable? {
+        val bm =
+            BitmapFactory.decodeResource(resources, drawableId).copy(Bitmap.Config.ARGB_8888, true)
+        val paint = Paint()
+        paint.setStyle(Paint.Style.FILL)
+        paint.setColor(Color.BLACK)
+        paint.setTextSize(20F)
+        val canvas = Canvas(bm)
+        if (text != null) {
+            canvas.drawText(text, 0F, (bm.height / 2).toFloat(), paint)
+        }
+        return BitmapDrawable(bm)
     }
     fun returnToMain(view: View){
         val intent = Intent(this, MainActivity::class.java)
