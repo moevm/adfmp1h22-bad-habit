@@ -11,4 +11,9 @@ jobs:
     - name: Give Rights
       run: chmod +x ./gradlew
     - name: Run unit tests
-      run: ./gradlew check && ./gradlew connectedCheck
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+          api-level: 26
+          arch: x86_64
+          target: default
+          script: ./gradlew check && ./gradlew connectedCheck
