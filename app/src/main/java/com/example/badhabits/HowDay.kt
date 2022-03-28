@@ -40,6 +40,8 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_how_day)
 
+        findViewById<TextView>(R.id.date2).text = currentDate
+
         mSettingsHabits = getSharedPreferences(APP_PREFERENCES_HABITS, Context.MODE_PRIVATE)
         var habits = HashSet<String>()
         if(mSettingsHabits?.contains("habits") == true) habits =

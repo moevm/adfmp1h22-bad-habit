@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".HowDay">
 
+    <TextView
+        android:id="@+id/date2"
+        android:layout_width="130dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="216dp"
+        android:text="Какая то дата"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <SeekBar
         android:id="@+id/feelSeek"
         android:layout_width="145dp"
