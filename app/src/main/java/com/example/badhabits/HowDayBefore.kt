@@ -91,9 +91,11 @@ class HowDayBefore : AppCompatActivity(), AdapterView.OnItemSelectedListener {
 
     fun onNoButtonClick(view: View){
         disruptionWas = false
+        Toast.makeText(this@HowDayBefore, "Без срыва", Toast.LENGTH_SHORT).show()
     }
     fun onYesButtonClick(view: View){
         disruptionWas = true
+        Toast.makeText(this@HowDayBefore, "Срыв был", Toast.LENGTH_SHORT).show()
     }
 
     fun getDate(view: View){

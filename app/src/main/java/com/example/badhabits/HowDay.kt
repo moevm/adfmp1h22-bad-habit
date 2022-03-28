@@ -74,10 +74,12 @@ class HowDay : AppCompatActivity() ,AdapterView.OnItemSelectedListener{
 
     fun onNoButtonClick(view: View){
         disruptionWas = false
+        Toast.makeText(this@HowDay, "Без срыва", Toast.LENGTH_SHORT).show()
 
     }
     fun onYesButtonClick(view: View){
         disruptionWas = true
+        Toast.makeText(this@HowDay, "Срыв был", Toast.LENGTH_SHORT).show()
     }
     fun onSaveButtonClick(view: View){
         var seekBarM:SeekBar = findViewById(R.id.moodSeek);
