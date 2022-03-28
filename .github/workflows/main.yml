@@ -11,4 +11,4 @@ jobs:
     - name: Give Rights
       run: chmod +x ./gradlew
     - name: Run unit tests
-      run: ./gradlew
+      run: ./gradlew check && ./gradlew connectedCheck
