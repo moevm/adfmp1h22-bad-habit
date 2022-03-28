@@ -9,6 +9,6 @@ class HabitTest : TestCase() {
     fun testGetPeriod() {
         val today = LocalDate.now()
         val output = Habit.getPeriod(Period.between(today.minusDays(3), today))
-        assertEquals(output, 15)
+        assertEquals(output, 3)
     }
 }
