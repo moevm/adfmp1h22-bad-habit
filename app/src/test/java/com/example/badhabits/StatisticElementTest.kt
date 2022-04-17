@@ -10,6 +10,7 @@ class StatisticElementTest : TestCase() {
         val elem = StatisticElement()
         val today = LocalDate.now()
         val output = elem.countDays(Period.between(today.minusDays(3), today))
+		
         assertEquals(output, 3)
     }
 }
