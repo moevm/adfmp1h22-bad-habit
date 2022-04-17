@@ -16,13 +16,16 @@ import java.io.FileOutputStream
 import org.mockito.*
 
 class FileControllerTest : TestCase() {
+
     val filename = "userHabbitsTest"
     var testFata = "this is a testing data!"
 
     @Test
     fun testSaveToFile() {
         val file_controller: FileController = FileController()
+		
         file_controller.saveToFile(testFata, FileOutputStream(filename))
+		
         assertEquals(File(filename).exists(), true)
     }
 
@@ -34,7 +37,9 @@ class FileControllerTest : TestCase() {
         var userDateFromFile: JSONArray = JSONArray()
         val mockBookService = Mockito.mock(JSONArray::class.java)
         val file_Controller: FileController = FileController()
+		
         userDateFromFile  = file_Controller.loadFromFile(FileInputStream(filename))
+		
         assertEquals("this is a testing data!", testFata)
     }
 }
